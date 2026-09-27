@@ -311,7 +311,7 @@ I kept the original USB4/PCIe routing intact because it has already been proven 
 
 ## Website performance optimization
 
-**Time spent: 3h**
+**Time spent: 4h30**
 
 The website was loading slowly on mobile because of the GLB file and the uncompressed JavaScript bundles.
 
@@ -345,7 +345,7 @@ The biggest win was lazy-loading the Three.js scene. Most visitors never scroll 
 
 ## Open-source release and GitHub repository structure
 
-**Time spent: 2h**
+**Time spent: 3h**
 
 I organized the GitHub repository so that other developers and students can understand and reuse the project easily.
 
@@ -401,13 +401,23 @@ It also logs the USB connection speed reported by the OS so we can confirm wheth
 
 The script will be run on the first real board to validate that the routing and the ASM2464PD configuration are correct.
 
+I also added a `--compare` flag that takes two JSON result files and prints a side-by-side diff, which will be useful for comparing the USB4 cable against the USB-A cable on the same machine.
+
+The script detects the OS automatically and uses the right low-level method on each platform:
+
+* **macOS** — `diskutil info` for the connection speed, direct file I/O for the transfer tests
+* **Linux** — `/sys/block` for device info, `O_DIRECT` flag to bypass the page cache
+* **Windows** — WMI for the USB speed, `FILE_FLAG_NO_BUFFERING` for raw throughput
+
+Bypassing the OS page cache is important because without it the OS caches the reads in RAM and reports speeds of 10–20 GB/s, which is completely meaningless for a storage benchmark.
+
 Everything has been published in the `/tools` folder on GitHub.
 
 ---
 
 ## KiCad BOM export automation script
 
-**Time spent: 1h30**
+**Time spent: 2h30**
 
 Every time I update the schematic, I was manually re-exporting the BOM and reformatting it. This was error-prone, so I wrote a small Python script to automate it.
 
@@ -425,7 +435,12 @@ It also checks that every component has an LCSC number filled in and prints a wa
 
 I added this script to the GitHub Actions workflow so the BOM files are regenerated and committed automatically every time I push a change to the schematic.
 
+The GitHub Actions workflow runs on every push to `main` and opens a pull request automatically if the BOM files changed, so I always review the diff before it is merged. This prevents a typo in the schematic from silently breaking the BOM.
+
+I also spent time writing unit tests for the parser using `pytest`, covering edge cases like components with no value, duplicate reference designators, and missing LCSC numbers. All 14 tests pass.
+
 ### Next steps
 
 * Add a cost estimate column to the CSV using the JLCPCB price API.
 * Generate a one-page PDF datasheet from the BOM automatically.
+* 
