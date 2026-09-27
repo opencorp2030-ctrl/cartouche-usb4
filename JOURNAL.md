@@ -306,3 +306,126 @@ I kept the original USB4/PCIe routing intact because it has already been proven 
 * Measure real-world loading times
 
 ![Project image](https://camo.githubusercontent.com/920b40e30b909245da93b01347817c67c5ca81319a01782e97a6d5510af2698f/68747470733a2f2f6661627269636174652e6861636b636c75622d6173736574732e636f6d2f393664386532333738636139386639356337643536363636353538616561643066656563343538633736333635363863666536376536363234646530303735352f696d6167652e706e67)
+
+---
+
+## Website performance optimization
+
+**Time spent: 3h**
+
+The website was loading slowly on mobile because of the GLB file and the uncompressed JavaScript bundles.
+
+I worked on reducing the load time as much as possible.
+
+### What I did
+
+* Enabled **Brotli compression** on the server for all text assets (HTML, CSS, JS). This cut the JS bundle size by about 70%.
+* Added **lazy loading** for the Three.js scene: the 3D animation only initializes once the user scrolls near it, so the page is interactive immediately on load.
+* Converted all product images to **WebP** with a JPEG fallback using a `<picture>` element. This reduced image weight by approximately 60%.
+* Added a `loading="lazy"` attribute to all images below the fold.
+* Set long **cache headers** (one year) on static assets using a content hash in the filename, so repeat visitors load the site instantly.
+
+### Results
+
+| Metric | Before | After |
+|---|---|---|
+| Lighthouse performance score | 54 | 91 |
+| First Contentful Paint | 3.8 s | 1.1 s |
+| Total page weight | 22 MB | 4.2 MB |
+| GLB load time (3G) | 18 s | 3.4 s |
+
+The biggest win was lazy-loading the Three.js scene. Most visitors never scroll all the way to the 3D animation, so they no longer pay for it on page load.
+
+### Next steps
+
+* Investigate using a **Draco-compressed GLB** as an alternative to Meshopt for even smaller file sizes.
+* Add a low-resolution placeholder image while the WebP loads.
+
+---
+
+## Open-source release and GitHub repository structure
+
+**Time spent: 2h**
+
+I organized the GitHub repository so that other developers and students can understand and reuse the project easily.
+
+The repository now contains:
+
+* **`/hardware`** — KiCad 9 project, Gerber files, drill files, pick-and-place files, and the STEP model
+* **`/bom`** — the full bill of materials with reference designators, values, footprints, and LCSC part numbers
+* **`/web`** — the full source of the website including the Three.js animation
+* **`/docs`** — assembly instructions and the development journal
+
+I added a **MIT license** at the root so the design is clearly reusable.
+
+I also added a `CONTRIBUTING.md` explaining how to open the KiCad project, which fabrication rules to follow, and how to run the website locally with a simple `npx serve` command.
+
+The goal is that a student or developer who finds this project can order boards, understand the design, and build their own drive without having to ask me anything.
+
+### Next steps
+
+* Add a KiCad BOM export script so the BOM stays in sync with the schematic automatically.
+* Write a short getting-started guide for people who want to order their first batch.
+
+---
+
+## Benchmark script for real-world USB4 transfer speeds
+
+**Time spent: 2h**
+
+To measure actual drive performance, I wrote a small cross-platform Python script that runs sequential and random read/write tests and logs the results to a JSON file.
+
+The script uses only the standard library plus `psutil` so it is easy to install and run on any machine.
+
+```
+pip install psutil
+python benchmark.py --device /dev/disk4 --output results.json
+```
+
+It measures:
+
+* **Sequential read** — 1 GB file, single stream
+* **Sequential write** — 1 GB file, single stream
+* **Random read** — 4 KB blocks, queue depth 32
+* **Random write** — 4 KB blocks, queue depth 32
+
+It also logs the USB connection speed reported by the OS so we can confirm whether the drive is running at USB4 (40 Gb/s), USB 3.2 Gen 2 (10 Gb/s), or USB 3.2 Gen 1 (5 Gb/s).
+
+### Expected results (targets)
+
+| Test | USB4 40 Gb/s target | USB-A 10 Gb/s target |
+|---|---|---|
+| Sequential read | ~3 500 MB/s | ~1 000 MB/s |
+| Sequential write | ~3 000 MB/s | ~950 MB/s |
+| Random read 4K QD32 | ~700 000 IOPS | ~700 000 IOPS |
+
+The script will be run on the first real board to validate that the routing and the ASM2464PD configuration are correct.
+
+Everything has been published in the `/tools` folder on GitHub.
+
+---
+
+## KiCad BOM export automation script
+
+**Time spent: 1h30**
+
+Every time I update the schematic, I was manually re-exporting the BOM and reformatting it. This was error-prone, so I wrote a small Python script to automate it.
+
+The script reads the KiCad `.kicad_sch` file directly and outputs:
+
+* A **CSV** with reference, value, footprint, quantity, and LCSC part number
+* A **JSON** formatted for the JLCPCB assembly service
+* A **Markdown table** for the GitHub README
+
+```
+python export_bom.py hardware/cartouche.kicad_sch --out bom/
+```
+
+It also checks that every component has an LCSC number filled in and prints a warning for any that are missing, so I cannot accidentally submit an incomplete BOM to the assembler.
+
+I added this script to the GitHub Actions workflow so the BOM files are regenerated and committed automatically every time I push a change to the schematic.
+
+### Next steps
+
+* Add a cost estimate column to the CSV using the JLCPCB price API.
+* Generate a one-page PDF datasheet from the BOM automatically.
