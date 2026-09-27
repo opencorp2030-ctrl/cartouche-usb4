@@ -1,9 +1,18 @@
 """Builds CARTOUCHE USB4 from the imported upstream board (MIT, Leaves232):
-fab rules of the original (4 layers, 3.5 mil, 0.2 mm vias), cartridge
-outline around the M.2 2230 SSD, slotted M2 mounting hole, silkscreen.
-The high-speed area (USB4, PCIe) is left untouched."""
+fab rules of the original (4 layers, 3.5 mil, 0.2 mm vias).
+
+v1.1 (default): the smallest possible board, for a closed case. The board
+keeps the original 22.0 x 33.7 mm outline (the electronics fill it), with no
+silkscreen text: the name is engraved on the case, and the case holds the
+M.2 2230 SSD, as in the original enclosure.
+v1.0 (--cartridge): 30 x 64 mm cartridge outline around the SSD, slotted M2
+mounting hole, silkscreen. Kept for reference.
+The high-speed area (USB4, PCIe) is never modified.
+
+Usage: make_cartouche.py upstream-import.kicad_pcb out.kicad_pcb [--cartridge]"""
 import pcbnew, sys
-src, dst, rules_only = sys.argv[1], sys.argv[2], len(sys.argv) > 3
+src, dst = sys.argv[1], sys.argv[2]
+rules_only = "--cartridge" not in sys.argv[3:]
 b = pcbnew.LoadBoard(src)
 MM = pcbnew.FromMM
 P = lambda x, y: pcbnew.VECTOR2I(MM(x), MM(y))
