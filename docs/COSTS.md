@@ -21,7 +21,8 @@ price; **estimate** = our assumption until the supplier quotes it.
 |---|---|---|---|
 | Aluminium case, CNC, anodised, laser-engraved | ≈ 35 € | ≈ 15 € | estimate (to quote once the case is drawn) |
 | Thermal pad + screws | 1 € | 1 € | estimate |
-| USB-A → USB-C cable, 10 Gb/s, 0.5 m | 10 € | 10 € | **real**: found by the maker |
+| USB-A → USB-C cable, 10 Gb/s, 0.5 m (any computer) | 10 € | 10 € | **real**: found by the maker |
+| USB-C ↔ USB-C cable, USB4 40 Gb/s, 0.5 m (full speed) | ≈ 15 € | ≈ 15 € | **real** prices seen: 14.90 € (0.5 m), $13.99 (UGREEN 1 m, sale) |
 | Box, foam, printed notice | ≈ 3 € | ≈ 3 € | estimate |
 | Shipping, Colissimo home delivery, 250 g | 5.49 € | 5.49 € | **real**: La Poste 2026 rate (free for the customer above 59 €) |
 
@@ -33,13 +34,37 @@ Card fees: Stripe ≈ 1.5 % + 0.25 €. Micro-enterprise contributions on sales
 
 | Capacity | SSD | Total cost (10 / 100) | Price | Left per unit (10 / 100) |
 |---|---|---|---|---|
-| 256 GB | ≈ 30 € | 140 € / 102 € | 249 € | 75 € / 112 € |
-| 512 GB | ≈ 45 € | 155 € / 117 € | 299 € | 103 € / 140 € |
-| 1 TB | ≈ 80 € | 190 € / 152 € | 399 € | 154 € / 191 € |
-| 2 TB | ≈ 130 € | 240 € / 202 € | 599 € | 276 € / 313 € |
+| 256 GB | ≈ 30 € | 154 € / 117 € | 249 € | 60 € / 97 € |
+| 512 GB | ≈ 45 € | 169 € / 132 € | 299 € | 88 € / 125 € |
+| 1 TB | ≈ 80 € | 204 € / 167 € | 399 € | 139 € / 176 € |
+| 2 TB | ≈ 130 € | 254 € / 217 € | 599 € | 261 € / 298 € |
 
 Not included: one-off costs of the first run (stencil, CNC programming), the
 first prototypes that may need a second revision, and income tax.
 
-Note: a 10 Gb/s USB-A cable limits the drive to about 1 GB/s. Full USB4 speed
-(≈ 3.5 GB/s) needs a USB-C 40 Gb/s (USB4 / Thunderbolt) cable and port.
+Two cables ship in the box: the USB-A one works on any computer (about 1 GB/s,
+the 10 Gb/s USB limit); the USB-C 40 Gb/s one gives full USB4 speed (≈ 3.5 GB/s)
+on a USB4 / Thunderbolt port.
+
+## What to buy besides the assembled board
+
+The assembler (NextPCB, turnkey PCBA) buys and solders every part of the BOM
+(regulators, USB-C connector, M.2 connector, crystal, flash, passives). Ask them
+to source the **ASM2464PD** too: it was missing from the original BOM match. If
+they can't, JLCPCB lists it (part C7509569), or buy it on Alibaba ($26.60) and
+send it to the assembler (consigned part).
+
+Per drive, bought separately:
+
+| Part | Where | Per drive |
+|---|---|---|
+| M.2 2230 NVMe SSD (256 GB – 2 TB), e.g. WD SN740, Kioxia BG6, Corsair MP600 Mini | retail | 30–130 € |
+| Aluminium case, 2 halves, CNC + anodised + laser-engraved | CNC supplier (from the STEP model) | ≈ 15–35 € |
+| Thermal pad 1 mm, ≥ 12 W/mK: cut 10 × 10 mm for the ASM2464PD, 22 × 20 mm for the SSD | one 100 × 100 mm sheet (≈ 10 €) does about 25 drives | ≈ 0.40 € |
+| 3 × M2 × 3 mm screws (board to case ×2, SSD ×1) | M.2 screw kit (≈ 1–10 €) | ≈ 0.20 € |
+| USB-C 40 Gb/s cable + USB-A 10 Gb/s cable | retail | ≈ 25 € |
+| Box, foam insert, printed notice | packaging supplier / print shop | ≈ 3 € |
+
+One-off: a Windows PC to flash the ASMedia firmware once per board (free tool
+from the original project), and a USB4 or Thunderbolt computer to measure the
+real speed.
