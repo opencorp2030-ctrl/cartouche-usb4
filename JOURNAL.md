@@ -2,6 +2,8 @@
 
 ## Thinking about our fellow developers
 
+**Time spent: 2h**
+
 I think it is important to support developers and teenagers who will be interested in this project. I am not particularly trying to make a profit from it.
 
 I want CARTOUCHE to be useful to people who want to experiment with local AI, developers who need portable storage, and other teenagers interested in hardware and software.
@@ -11,6 +13,8 @@ I want CARTOUCHE to be useful to people who want to experiment with local AI, de
 ---
 
 ## Brainstorming
+
+**Time spent: 1h 12m**
 
 Looking for the best compatible SSD.
 
@@ -23,6 +27,8 @@ To make a 24 TB version, we would have to redesign the entire board from scratch
 ---
 
 ## Cables and additional parts to purchase
+
+**Time spent: 24m**
 
 I chose the cables:
 
@@ -48,6 +54,8 @@ I also updated the costs for each storage capacity.
 ---
 
 ## Total cost per unit — from chip to shipping
+
+**Time spent: 24m**
 
 I worked on the cost of a finished drive for each capacity.
 
@@ -78,6 +86,8 @@ For a batch of 100, the estimated cost is approximately **€102 per drive for 2
 ---
 
 ## Enclosure colors, capacities, and component layout
+
+**Time spent: 24m**
 
 I extended the 3D product film with a tour of the real board.
 
@@ -111,6 +121,8 @@ Available capacities:
 
 ## Website
 
+**Time spent: 13h 48m**
+
 Created animations for the website's **SanDisk**, **Seagate**, and **Éclair** pages:
 
 **https://cartouche.candygate.eu**
@@ -122,6 +134,8 @@ I also redesigned the store page to make it look better.
 ---
 
 ## 3D web animation of the KiCad board model
+
+**Time spent: 1h**
 
 I exported the complete 3D model of the KiCad board as a **GLB**, including the copper traces.
 
@@ -145,6 +159,8 @@ It also helped us think about the enclosure design:
 
 ## Cost verification from the real BOM quote
 
+**Time spent: 12m**
+
 I worked on the cost of one board.
 
 Using the actual **Huaqiu BOM quote** from the original design, the components cost **65.71 CNY (~€8.50) per board**, excluding the ASM2464PD bridge, which has no public price and needs to be quoted by the assembler.
@@ -160,6 +176,8 @@ I also noticed that a **10 Gb/s USB-A cable limits the drive to approximately 1 
 ---
 
 ## v1.1 — The smallest board for an engraved enclosure
+
+**Time spent: 5h**
 
 The drive will live inside a closed enclosure with the product name engraved on it, so the large cartridge-shaped board no longer made sense.
 
@@ -193,6 +211,8 @@ Everything has been published on GitHub.
 
 ## Fabrication settings and first NextPCB quote
 
+**Time spent: 12m**
+
 I prepared the PCB order with the following specifications:
 
 * **4-layer FR-4**
@@ -212,6 +232,8 @@ I checked the ENIG gold thickness options and received a first quote of approxim
 ---
 
 ## Altium to KiCad 9 + first cartridge board
+
+**Time spent: 1h**
 
 I converted the original Altium project to **KiCad 9** using a script.
 
@@ -237,6 +259,8 @@ The high-speed USB4/PCIe routing was left intact.
 
 ## Choosing the components — USB4 + NVMe 2230
 
+**Time spent: 3h 18m**
+
 The goal is to make the fastest possible CARTOUCHE drive for local AI applications, where multi-gigabyte models need to be loaded from the drive at startup.
 
 I chose:
@@ -253,6 +277,8 @@ Instead of designing the high-speed section completely from scratch, I found the
 ---
 
 ## Small USB4 NVMe board — KiCad port and fabrication files
+
+**Time spent: 3h**
 
 I took the open-source **Leaves232 USB4 2230** design using the ASM2464PD and turned it into the CARTOUCHE drive.
 
@@ -278,11 +304,14 @@ I kept the original USB4/PCIe routing intact because it has already been proven 
 * Order **5 boards**
 * Design the aluminum enclosure
 * Measure real-world loading times
-![Project image](https://camo.githubusercontent.com/920b40e30b909245da93b01347817c67c5ca81319a01782e97a6d5510af2698f/68747470733a2f2f6661627269636174652e6861636b636c75622d6173736574732e636f6d2f393664386532333738636139386639356337643536363636353538616561643066656563343538633736333635363863666536376536363234646530303735352f696d6167652e706e67)
+
+![CARTOUCHE USB4](https://github.com/opencorp2030-ctrl/cartouche-usb4/blob/main/images/banner.png?raw=true)
 
 ---
 
 ## Source design and final board concept
+
+**Time spent: 1h**
 
 The project evolved from the original open-source USB4 design into a much smaller CARTOUCHE-specific board.
 
@@ -296,6 +325,8 @@ The final concept combines the USB4 bridge, M.2 2230 SSD, power management, and 
 
 ## Preparing the physical prototype
 
+**Time spent: 1h**
+
 The next stage is to turn the digital design into a physical prototype.
 
 The manufacturing files are ready, including the Gerbers, drill files, pick-and-place data, and STEP model.
@@ -308,6 +339,8 @@ The prototype will allow me to verify the mechanical fit, USB4 connectivity, SSD
 
 ## Preparing the enclosure
 
+**Time spent: 1h**
+
 The enclosure is designed around the final compact PCB and M.2 2230 SSD.
 
 The idea is to use two CNC-machined aluminum halves, with an opening for the USB-C connector and a laser-engraved CARTOUCHE logo on the top.
@@ -315,5 +348,3 @@ The idea is to use two CNC-machined aluminum halves, with an opening for the USB
 The STEP model of the PCB is being used as the reference for the mechanical design.
 
 ![Enclosure concept](https://fabricate.hackclub-assets.com/26b524812d00a2b41a85b24c3752ef8e683c5a7532091b9cc993051d65454124/Screenshot%202026-09-27%20at%2011.09.03%E2%80%AFAM.png)
-
----
