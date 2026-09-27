@@ -108,6 +108,10 @@ Notes:
 - A new board must be flashed once with the ASMedia tool and firmware provided in
   the original repository (not redistributed here).
 
+## Cost
+
+See [`docs/COSTS.md`](docs/COSTS.md): about 8.5 € of components per board (real quote), plus the ASM2464PD, the PCB, assembly, SSD, cable and case.
+
 ## Status
 
 Designed, not built yet. Next steps: order 5 assembled boards, design the
