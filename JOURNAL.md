@@ -369,6 +369,8 @@ The goal is that a student or developer who finds this project can order boards,
 * Add a KiCad BOM export script so the BOM stays in sync with the schematic automatically.
 * Write a short getting-started guide for people who want to order their first batch.
 
+![Project image](https://fabricate.hackclub-assets.com/96d8e2378ca98f95c7d56666558aead0feec458c7636568cfe67e6624de00755/image.png)
+
 ---
 
 ## Benchmark script for real-world USB4 transfer speeds
@@ -415,6 +417,8 @@ Bypassing the OS page cache is important because without it the OS caches the re
 
 Everything has been published in the `/tools` folder on GitHub.
 
+![Project image](https://fabricate.hackclub-assets.com/e0aa970ff9b5fa7c04de1e175960c1ab728f14ab1fb464b3c421bc324ff8e3d3/image.png)
+
 ---
 
 ## KiCad BOM export automation script
@@ -445,3 +449,5 @@ I also spent time writing unit tests for the parser using `pytest`, covering edg
 
 * Add a cost estimate column to the CSV using the JLCPCB price API.
 * Generate a one-page PDF datasheet from the BOM automatically.
+
+![Component cost breakdown](https://fabricate.hackclub-assets.com/50f2617cc22d1a9512cad258a3f73f50a2e97b7a4b5bfe4a951f43648228d8df/Fabricate-5-couts-composants.png)
