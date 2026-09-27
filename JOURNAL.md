@@ -371,7 +371,7 @@ The goal is that a student or developer who finds this project can order boards,
 
 ## Benchmark script for real-world USB4 transfer speeds
 
-**Time spent: 2h**
+**Time spent: 3h30**
 
 To measure actual drive performance, I wrote a small cross-platform Python script that runs sequential and random read/write tests and logs the results to a JSON file.
 
