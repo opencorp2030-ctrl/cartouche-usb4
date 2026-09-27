@@ -278,8 +278,7 @@ I kept the original USB4/PCIe routing intact because it has already been proven 
 * Order **5 boards**
 * Design the aluminum enclosure
 * Measure real-world loading times
-
-![CARTOUCHE board](https://github.com/opencorp2030-ctrl/cartouche-usb4/blob/main/images/banner.png?raw=true)
+![Project image](https://camo.githubusercontent.com/920b40e30b909245da93b01347817c67c5ca81319a01782e97a6d5510af2698f/68747470733a2f2f6661627269636174652e6861636b636c75622d6173736574732e636f6d2f393664386532333738636139386639356337643536363636353538616561643066656563343538633736333635363863666536376536363234646530303735352f696d6167652e706e67)
 
 ---
 
