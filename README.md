@@ -1,5 +1,7 @@
 # CARTOUCHE USB4 — a game-cartridge-sized USB4 SSD for a local AI
 
+![CARTOUCHE USB4](images/banner.png)
+
 A small board that turns an **M.2 2230 NVMe SSD** into a **USB4 (40 Gb/s) drive**
 in a **30 × 64 mm game-cartridge shape**, with a **single USB-C port**.
 
