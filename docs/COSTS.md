@@ -26,21 +26,31 @@ price; **estimate** = our assumption until the supplier quotes it.
 | Box, foam, printed notice | ≈ 3 € | ≈ 3 € | estimate |
 | Shipping, Colissimo home delivery, 250 g | 5.49 € | 5.49 € | **real**: La Poste 2026 rate (free for the customer above 59 €) |
 
-## Per capacity
+## Per capacity: sold at cost
+
+CARTOUCHE is a non-profit project: each price is the unit's cost plus the fees
+paid on the sale (card fees ≈ 1.5 % + 0.25 €, the seller's micro-enterprise
+social contributions 12.3 %) plus a 5 % reserve for faulty units and returns.
+No profit margin. Shipping is charged separately, at cost. The same breakdown
+is public on [cartouche.candygate.eu/nos-prix.html](https://cartouche.candygate.eu/nos-prix.html),
+computed by `tools/prix_coutant.py` in the software repository.
 
 SSD prices are retail estimates for an M.2 2230 NVMe (2 TB: $120–140 seen).
-Card fees: Stripe ≈ 1.5 % + 0.25 €. Micro-enterprise contributions on sales
-(France): ≈ 12.4 % of the price.
+Costs below are for the first batch of 10.
 
-| Capacity | SSD | Total cost (10 / 100) | Price | Left per unit (10 / 100) |
+| Capacity | SSD | Unit cost (incl. box) | Price | Of which reserve |
 |---|---|---|---|---|
-| 256 GB | ≈ 30 € | 154 € / 117 € | 249 € | 60 € / 97 € |
-| 512 GB | ≈ 45 € | 169 € / 132 € | 299 € | 88 € / 125 € |
-| 1 TB | ≈ 80 € | 204 € / 167 € | 399 € | 139 € / 176 € |
-| 2 TB | ≈ 130 € | 254 € / 217 € | 599 € | 261 € / 298 € |
+| 256 GB | ≈ 30 € | 149 € | 184 € | 9.36 € |
+| 512 GB | ≈ 45 € | 164 € | 203 € | 10.73 € |
+| 1 TB | ≈ 80 € | 199 € | 246 € | 12.80 € |
+| 2 TB | ≈ 130 € | 249 € | 307 € | 15.38 € |
 
-Not included: one-off costs of the first run (stencil, CNC programming), the
-first prototypes that may need a second revision, and income tax.
+With batches of 100 the board and case get cheaper (≈ 38 € and ≈ 15 €), so the
+prices will go down by about 45 € per unit.
+
+Not included: one-off costs of the first run (stencil, CNC programming) and the
+first prototypes that may need a second revision; these are paid by the project
+(for example with a Hack Club Fabricate grant, if approved), not by buyers.
 
 Two cables ship in the box: the USB-A one works on any computer (about 1 GB/s,
 the 10 Gb/s USB limit); the USB-C 40 Gb/s one gives full USB4 speed (≈ 3.5 GB/s)
