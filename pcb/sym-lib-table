@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "ASM2464PD-altium-import")(type "KiCad")(uri "${KIPRJMOD}/ASM2464PD-altium-import.kicad_sym")(options "")(descr ""))
+)

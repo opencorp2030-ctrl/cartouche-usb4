@@ -26,14 +26,18 @@ takes up to minutes to load, over USB4 + NVMe it should take under a second.
 
 ![wiring diagram](docs/images/wiring-diagram.png)
 
-Simplified block diagram; the exact nets are in the original schematic.
+Simplified block diagram. The full schematic is in KiCad
+([`pcb/cartouche-usb4.kicad_sch`](pcb/cartouche-usb4.kicad_sch), also as a
+[PDF](docs/schematic.pdf)):
+
+![schematic](docs/images/schematic.png)
 
 ## What's in the repository
 
 | Folder | Content |
 |---|---|
 | [`BOM.csv`](BOM.csv) | every part, with manufacturer part numbers and supplier links that work from France |
-| [`pcb/`](pcb) | KiCad 9 project (`.kicad_pro`, `.kicad_pcb`), Gerbers + drills (`fab/cartouche-usb4-gerbers.zip`), pick-and-place, board STEP, import scripts |
+| [`pcb/`](pcb) | KiCad 9 project (`.kicad_pro`, `.kicad_sch`, `.kicad_pcb`, symbol library), Gerbers + drills (`fab/cartouche-usb4-gerbers.zip`), pick-and-place, board STEP, import scripts |
 | [`cad/`](cad) | **case source** (`eclair_v1.py`, CadQuery), and in `cad/out/`: case base and lid, SSD 2230 and USB-C plug (STEP + STL), the board as a printable mock-up (STL), and **`eclair_v1_assembly.step`, the full assembly with the electronics** |
 | [`firmware/`](firmware) | how the drive enumerates (NVMe over USB4, UAS over USB 3), flashing the ASMedia firmware, `eclair_check.py` (link and speed check) |
 | [`docs/`](docs) | [costs per unit](docs/COSTS.md), images |
@@ -71,8 +75,8 @@ smallest outline for a closed case, the **case design** (CAD source here), the S
 and cable fit, the BOM with suppliers and costs, the firmware/flashing procedure
 and check tool, and the CARTOUCHE software that runs on it.
 
-The original schematic is in Altium format in the upstream repository; open it in
-KiCad with *File → Import → Non-KiCad Project* to get the `.kicad_sch`.
+The schematic was imported from the original Altium project into KiCad 9
+(`pcb/cartouche-usb4.kicad_sch`, symbols in `pcb/ASM2464PD-altium-import.kicad_sym`).
 
 ## How to get it made
 
