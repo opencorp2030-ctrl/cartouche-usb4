@@ -2,12 +2,12 @@
 
 ## Thinking about our fellow developers
 
-**Time spent: 3h**
+**Time spent: 4h**
 
 I think it is important to support developers and teenagers who will be interested in this project. I am not particularly trying to make a profit from it.
 
 I want CARTOUCHE to be useful to people who want to experiment with local AI, developers who need portable storage, and other teenagers interested in hardware and software.
-
+ (changing everything so now its ok)
 ![Project image](https://fabricate.hackclub-assets.com/658913d3331e84e67e59ca0c51b9f8d8a69705011e473515fc22bf43d71006a2/image.png)
 
 ---
@@ -55,7 +55,7 @@ I also updated the costs for each storage capacity.
 
 ## Total cost per unit — from chip to shipping
 
-**Time spent: 1h**
+**Time spent: 2h**
 
 I worked on the cost of a finished drive for each capacity.
 
@@ -87,7 +87,7 @@ For a batch of 100, the estimated cost is approximately **€102 per drive for 2
 
 ## Enclosure colors, capacities, and component layout
 
-**Time spent: 1h**
+**Time spent: 2.3h**
 
 I extended the 3D product film with a tour of the real board.
 
@@ -121,7 +121,7 @@ Available capacities:
 
 ## Website
 
-**Time spent: 16h**
+**Time spent: 19h**
 
 Created animations for the website's **SanDisk**, **Seagate**, and **Éclair** pages:
 
@@ -278,7 +278,7 @@ Instead of designing the high-speed section completely from scratch, I found the
 
 ## Small USB4 NVMe board — KiCad port and fabrication files
 
-**Time spent: 4h30**
+**Time spent: 5h30**
 
 I took the open-source **Leaves232 USB4 2230** design using the ASM2464PD and turned it into the CARTOUCHE drive.
 
