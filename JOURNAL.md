@@ -341,6 +341,8 @@ The biggest win was lazy-loading the Three.js scene. Most visitors never scroll 
 * Investigate using a **Draco-compressed GLB** as an alternative to Meshopt for even smaller file sizes.
 * Add a low-resolution placeholder image while the WebP loads.
 
+![Website](https://fabricate.hackclub-assets.com/bd5466791f4c06c3553c53bc964fcf3c3adecd0c7c2981288de564d6f88efdc1/Screenshot%202026-09-27%20at%2011.03.17%E2%80%AFAM.png)
+
 ---
 
 ## Open-source release and GitHub repository structure
@@ -443,4 +445,3 @@ I also spent time writing unit tests for the parser using `pytest`, covering edg
 
 * Add a cost estimate column to the CSV using the JLCPCB price API.
 * Generate a one-page PDF datasheet from the BOM automatically.
-* 
