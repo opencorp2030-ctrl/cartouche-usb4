@@ -3,7 +3,7 @@
 Each line says where the number comes from. **Real** = a quote or a public
 price; **estimate** = our assumption until the supplier quotes it.
 
-![component cost](component-cost.png)
+![component cost](images/component-cost.png)
 
 ## Complete board (PCB + parts + assembly)
 
@@ -61,7 +61,7 @@ Per drive, bought separately:
 | M.2 2230 NVMe SSD (256 GB – 2 TB), e.g. WD SN740, Kioxia BG6, Corsair MP600 Mini | retail | 30–130 € |
 | Aluminium case, 2 halves, CNC + anodised + laser-engraved | CNC supplier (from the STEP model) | ≈ 15–35 € |
 | Thermal pad 1 mm, ≥ 12 W/mK: cut 10 × 10 mm for the ASM2464PD, 22 × 20 mm for the SSD | one 100 × 100 mm sheet (≈ 10 €) does about 25 drives | ≈ 0.40 € |
-| 3 × M2 × 3 mm screws (board to case ×2, SSD ×1) | M.2 screw kit (≈ 1–10 €) | ≈ 0.20 € |
+| 2 × M3 × 12 countersunk (board + case), 1 × M2 × 10 (rear), 1 × M2 × 3 (SSD) | screw kits (≈ 1–10 €) | ≈ 0.30 € |
 | USB-C 40 Gb/s cable + USB-A 10 Gb/s cable | retail | ≈ 25 € |
 | Box, foam insert, printed notice | packaging supplier / print shop | ≈ 3 € |
 

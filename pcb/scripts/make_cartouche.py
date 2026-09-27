@@ -18,6 +18,7 @@ MM = pcbnew.FromMM
 P = lambda x, y: pcbnew.VECTOR2I(MM(x), MM(y))
 
 ds = b.GetDesignSettings()
+ds.SetBoardThickness(MM(1.6))            # as ordered (fab requirements: 1.6 mm)
 ds.m_MinClearance = MM(0.0889)          # 3.5 mil
 ds.m_TrackMinWidth = MM(0.08)
 ds.m_MinThroughDrill = MM(0.2)
