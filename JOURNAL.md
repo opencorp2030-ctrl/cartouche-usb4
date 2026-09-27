@@ -4,6 +4,8 @@
 
 I think it is important to support developers and teenagers who will be interested in this project. I am not particularly trying to make a profit from it.
 
+I want CARTOUCHE to be useful to people who want to experiment with local AI, developers who need portable storage, and other teenagers interested in hardware and software.
+
 ![Project image](https://fabricate.hackclub-assets.com/658913d3331e84e67e59ca0c51b9f8d8a69705011e473515fc22bf43d71006a2/image.png)
 
 ---
@@ -40,7 +42,9 @@ I will purchase the following parts myself:
 * Packaging
 
 I also updated the costs for each storage capacity.
-![Project image](https://camo.githubusercontent.com/920b40e30b909245da93b01347817c67c5ca81319a01782e97a6d5510af2698f/68747470733a2f2f6661627269636174652e6861636b636c75622d6173736574732e636f6d2f393664386532333738636139386639356337643536363636353538616561643066656563343538633736333635363863666536376536363234646530303735352f696d6167652e706e67)
+
+![Project image](https://fabricate.hackclub-assets.com/658913d3331e84e67e59ca0c51b9f8d8a69705011e473515fc22bf43d71006a2/image.png)
+
 ---
 
 ## Total cost per unit — from chip to shipping
@@ -68,7 +72,9 @@ For a batch of 100, the estimated cost is approximately **€102 per drive for 2
 
 * Get a new quote for the smaller board from NextPCB.
 * Design the enclosure from the STEP model.
-![Project image](https://camo.githubusercontent.com/920b40e30b909245da93b01347817c67c5ca81319a01782e97a6d5510af2698f/68747470733a2f2f6661627269636174652e6861636b636c75622d6173736574732e636f6d2f393664386532333738636139386639356337643536363636353538616561643066656563343538633736333635363863666536376536363234646530303735352f696d6167652e706e67)
+
+![Component cost breakdown](https://fabricate.hackclub-assets.com/50f2617cc22d1a9512cad258a3f73f50a2e97b7a4b5bfe4a951f43648228d8df/Fabricate-5-couts-composants.png)
+
 ---
 
 ## Enclosure colors, capacities, and component layout
@@ -132,7 +138,9 @@ It also helped us think about the enclosure design:
 * Two aluminum halves
 * USB-C opening
 * Engraved top surface
-![Project image](https://camo.githubusercontent.com/920b40e30b909245da93b01347817c67c5ca81319a01782e97a6d5510af2698f/68747470733a2f2f6661627269636174652e6861636b636c75622d6173736574732e636f6d2f393664386532333738636139386639356337643536363636353538616561643066656563343538633736333635363863666536376536363234646530303735352f696d6167652e706e67)
+
+![Project 3D model](https://camo.githubusercontent.com/920b40e30b909245da93b01347817c67c5ca81319a01782e97a6d5510af2698f/68747470733a2f2f6661627269636174652e6861636b636c75622d6173736574732e636f6d2f393664386532333738636139386639356337643536363636353538616561643066656563343538633736333635363863666536376536363234646530303735352f696d6167652e706e67)
+
 ---
 
 ## Cost verification from the real BOM quote
@@ -270,7 +278,43 @@ I kept the original USB4/PCIe routing intact because it has already been proven 
 * Order **5 boards**
 * Design the aluminum enclosure
 * Measure real-world loading times
-![Project image](https://camo.githubusercontent.com/920b40e30b909245da93b01347817c67c5ca81319a01782e97a6d5510af2698f/68747470733a2f2f6661627269636174652e6861636b636c75622d6173736574732e636f6d2f393664386532333738636139386639356337643536363636353538616561643066656563343538633736333635363863666536376536363234646530303735352f696d6167652e706e67)
 
-![CARTOUCHE USB4](https://github.com/opencorp2030-ctrl/cartouche-usb4/blob/main/images/banner.png?raw=true)
+![CARTOUCHE board](https://github.com/opencorp2030-ctrl/cartouche-usb4/blob/main/images/banner.png?raw=true)
 
+---
+
+## Source design and final board concept
+
+The project evolved from the original open-source USB4 design into a much smaller CARTOUCHE-specific board.
+
+The main goal was to preserve the already-tested high-speed routing while adapting the board to the final enclosure.
+
+The final concept combines the USB4 bridge, M.2 2230 SSD, power management, and USB-C connectivity inside a compact aluminum enclosure.
+
+![CARTOUCHE USB4](https://fabricate.hackclub-assets.com/658913d3331e84e67e59ca0c51b9f8d8a69705011e473515fc22bf43d71006a2/image.png)
+
+---
+
+## Preparing the physical prototype
+
+The next stage is to turn the digital design into a physical prototype.
+
+The manufacturing files are ready, including the Gerbers, drill files, pick-and-place data, and STEP model.
+
+The prototype will allow me to verify the mechanical fit, USB4 connectivity, SSD installation, thermals, and real-world loading performance.
+
+![PCB prototype design](https://fabricate.hackclub-assets.com/96d8e2378ca98f95c7d56666558aead0feec458c7636568cfe67e6624de00755/image.png)
+
+---
+
+## Preparing the enclosure
+
+The enclosure is designed around the final compact PCB and M.2 2230 SSD.
+
+The idea is to use two CNC-machined aluminum halves, with an opening for the USB-C connector and a laser-engraved CARTOUCHE logo on the top.
+
+The STEP model of the PCB is being used as the reference for the mechanical design.
+
+![Enclosure concept](https://fabricate.hackclub-assets.com/26b524812d00a2b41a85b24c3752ef8e683c5a7532091b9cc993051d65454124/Screenshot%202026-09-27%20at%2011.09.03%E2%80%AFAM.png)
+
+---
