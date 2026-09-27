@@ -1,7 +1,6 @@
 # Cost of one CARTOUCHE Éclair (USB4 drive), per capacity
 
-Each line says where the number comes from. **Real** = a quote or a public
-price; **estimate** = our assumption until the supplier quotes it.
+**Real** = a quote or a public price · **estimate** = not quoted by a supplier yet.
 
 ![component cost](images/component-cost.png)
 
@@ -28,15 +27,13 @@ price; **estimate** = our assumption until the supplier quotes it.
 
 ## Per capacity: sold at cost
 
-CARTOUCHE is a non-profit project: each price is the unit's cost plus the fees
-paid on the sale (card fees ≈ 1.5 % + 0.25 €, the seller's micro-enterprise
-social contributions 12.3 %) plus a 5 % reserve for faulty units and returns.
-No profit margin. Shipping is charged separately, at cost. The same breakdown
-is public on [cartouche.candygate.eu/nos-prix.html](https://cartouche.candygate.eu/nos-prix.html),
-computed by `tools/prix_coutant.py` in the software repository.
+I think it's important to support the developers and teenagers who will be
+interested, and I'm not especially trying to make a profit on this project.
 
-SSD prices are retail estimates for an M.2 2230 NVMe (2 TB: $120–140 seen).
-Costs below are for the first batch of 10.
+- Price = unit cost + card fees (1.5 % + 0.25 €) + seller's social contributions (12.3 %) + 5 % reserve (faulty units, returns).
+- Shipping: charged separately, at cost.
+- Public breakdown: [cartouche.candygate.eu/nos-prix.html](https://cartouche.candygate.eu/nos-prix.html) (computed by `tools/prix_coutant.py`).
+- SSD prices: retail estimates for an M.2 2230 NVMe (2 TB: $120–140 seen). Costs for the first batch of 10.
 
 | Capacity | SSD | Unit cost (incl. box) | Price | Of which reserve |
 |---|---|---|---|---|
@@ -45,24 +42,14 @@ Costs below are for the first batch of 10.
 | 1 TB | ≈ 80 € | 199 € | 246 € | 12.80 € |
 | 2 TB | ≈ 130 € | 249 € | 307 € | 15.38 € |
 
-With batches of 100 the board and case get cheaper (≈ 38 € and ≈ 15 €), so the
-prices will go down by about 45 € per unit.
-
-Not included: one-off costs of the first run (stencil, CNC programming) and the
-first prototypes that may need a second revision; these are paid by the project
-(for example with a Hack Club Fabricate grant, if approved), not by buyers.
-
-Two cables ship in the box: the USB-A one works on any computer (about 1 GB/s,
-the 10 Gb/s USB limit); the USB-C 40 Gb/s one gives full USB4 speed (≈ 3.5 GB/s)
-on a USB4 / Thunderbolt port.
+- Batches of 100: board ≈ 38 €, case ≈ 15 € → prices about 45 € lower per unit.
+- Not included: one-off costs of the first run (stencil, CNC programming) and prototype revisions; not paid by buyers.
+- In the box: USB-A cable (any computer, ≈ 1 GB/s) + USB-C 40 Gb/s cable (full USB4 speed, ≈ 3.5 GB/s).
 
 ## What to buy besides the assembled board
 
-The assembler (NextPCB, turnkey PCBA) buys and solders every part of the BOM
-(regulators, USB-C connector, M.2 connector, crystal, flash, passives). Ask them
-to source the **ASM2464PD** too: it was missing from the original BOM match. If
-they can't, JLCPCB lists it (part C7509569), or buy it on Alibaba ($26.60) and
-send it to the assembler (consigned part).
+- Assembler (NextPCB, turnkey PCBA): buys and solders every BOM part (regulators, USB-C and M.2 connectors, crystal, flash, passives).
+- ASM2464PD: ask the assembler to source it (missing from the original BOM match); otherwise JLCPCB C7509569, or Alibaba ($26.60) sent as a consigned part.
 
 Per drive, bought separately:
 
@@ -75,6 +62,4 @@ Per drive, bought separately:
 | USB-C 40 Gb/s cable + USB-A 10 Gb/s cable | retail | ≈ 25 € |
 | Box, foam insert, printed notice | packaging supplier / print shop | ≈ 3 € |
 
-One-off: a Windows PC to flash the ASMedia firmware once per board (free tool
-from the original project), and a USB4 or Thunderbolt computer to measure the
-real speed.
+One-off tools: a Windows PC to flash the ASMedia firmware (free tool from the original project), a USB4 or Thunderbolt computer to measure the real speed.

@@ -2,15 +2,19 @@
 
 ![CARTOUCHE Éclair V1](docs/images/banner.png)
 
-**CARTOUCHE Éclair V1** is a pocket drive that runs a complete AI assistant offline:
-plug it into any Windows, macOS or Linux computer, double-click, chat. Nothing is
-installed on the computer and nothing goes to the Internet
-([cartouche.candygate.eu](https://cartouche.candygate.eu/eclair.html)).
+CARTOUCHE is a way to store heavy AI models and run them easily and fast, while
+keeping your data from going to third-party servers.
 
-Inside: a **22.0 × 33.7 mm USB4 board** (ASMedia ASM2464PD, 40 Gb/s), an **M.2 2230
-NVMe SSD** (256 GB – 2 TB), in a **25 × 65 × 13 mm aluminium case** with the name
-laser-engraved. Local AI reads gigabytes at every start: from a USB key a 3 GB model
-takes up to minutes to load, over USB4 + NVMe it should take under a second.
+Website: [cartouche.candygate.eu](https://cartouche.candygate.eu/eclair.html)
+
+| | |
+|---|---|
+| Board | 22.0 × 33.7 mm, 4 layers, 1.6 mm |
+| USB4 controller | ASMedia ASM2464PD, 40 Gb/s, PCIe 4.0 x4 |
+| Storage | M.2 2230 NVMe SSD, 256 GB – 2 TB |
+| Case | aluminium, 25 × 65 × 13 mm, laser-engraved, 3 colours |
+| Expected speed | ≈ 3.5 GB/s on USB4 / Thunderbolt, ≈ 1 GB/s on USB 3.2 (not measured yet) |
+| In the box | USB-C 40 Gb/s cable + USB-A cable |
 
 | Full model | Inside (case transparent) |
 |---|---|
@@ -28,15 +32,18 @@ takes up to minutes to load, over USB4 + NVMe it should take under a second.
 
 ## Why I made this
 
-<!-- TO WRITE (Arthur, in your own words): why you made this project, 2-3 sentences. -->
+I got the idea because I have a lot of other projects with AI, and this was a real
+problem. I like solving the problems I have.
+
+Why my own drive (Éclair) and not just USB keys: because I want it to be useful
+for devs and to be a good deal. That's actually why I set up the developer program.
 
 ## Wiring
 
 ![wiring diagram](docs/images/wiring-diagram.png)
 
-Simplified block diagram. The full schematic is in KiCad
-([`pcb/cartouche-usb4.kicad_sch`](pcb/cartouche-usb4.kicad_sch), also as a
-[PDF](docs/schematic.pdf)):
+Full schematic: [`pcb/cartouche-usb4.kicad_sch`](pcb/cartouche-usb4.kicad_sch) ·
+[PDF](docs/schematic.pdf)
 
 ![schematic](docs/images/schematic.png)
 
@@ -52,56 +59,57 @@ Simplified block diagram. The full schematic is in KiCad
 
 ## The case
 
-Everything is modelled at scale around the real board (the KiCad STEP):
+The case will be made of good-quality aluminium, both to protect against shocks and
+to get rid of the heat. It will be engraved so the info doesn't wear off over time.
+Arranging everything as well as possible is pretty complicated. I'm really happy
+with it, especially the purple colour of the case, which you can pick as an option
+on the website.
 
-- two halves split under the board; the board rests on two posts of the base;
-- **two M3 × 12 countersunk screws** go from below through the base, the board's
-  Ø3.2 holes, into the lid: one pair of screws holds the board and closes the case;
-- the **SSD** lies under the board, plugged in the M.2 connector, held by an **M2
-  screw** on a standoff of the base; one M2 × 10 screw closes the rear;
-- the **USB-C receptacle is flush** with the front: a real USB-C plug seats fully
-  (the plug model is included, mated, and checked for clearance);
-- a boss in the lid presses a 1 mm thermal pad on the ASM2464PD (the lid is the
-  heatsink);
-- interference check: board, SSD, plug, base and lid do not overlap (the SSD edge
-  only enters its connector).
+| Part | Detail |
+|---|---|
+| Halves | base + lid, split under the board |
+| Board + closing | 2 × M3 × 12 countersunk screws, from below, through the board's Ø3.2 holes into the lid |
+| SSD | in the M.2 connector, M2 screw on a standoff of the base |
+| Rear | 1 × M2 × 10 screw |
+| USB-C | receptacle flush with the front; plug model included, mated and checked |
+| Cooling | lid boss + 1 mm thermal pad on the ASM2464PD |
+| Interference check | no overlap between board, SSD, plug, base and lid |
+| Fit test | print `case_base.stl`, `case_lid.stl`, `ssd_2230.stl`, `board_mockup.stl`; values to confirm are marked `CHECK` in `eclair_v1.py` |
 
-To test the fit, print `case_base.stl`, `case_lid.stl`, `ssd_2230.stl` and
-`board_mockup.stl`. Values to confirm with the printed test and real parts are
-marked `CHECK` in `eclair_v1.py` (SSD insertion depth, screw pilot holes).
+## Credit: what is mine and what is not
 
-## Credit: what is ours and what is not
+For this prototype, I'd rather start from something that works, even if I have to
+adjust it, than start again from zero (no need to reinvent the wheel). All the
+ideas, the tests and the code are my work ;)
 
-The board's electronics — schematic, component placement and the hand-routed
-USB4/PCIe layout — come from the open-source project
-**[Leaves232/2230-USB4-SSD-Enclosure-Design](https://github.com/Leaves232/2230-USB4-SSD-Enclosure-Design)**
-(MIT, see [`LICENSE-upstream-MIT`](LICENSE-upstream-MIT)), built and tested by its
-author. We did not re-route it: the high-speed layout is the part that is proven.
+| From [Leaves232/2230-USB4-SSD-Enclosure-Design](https://github.com/Leaves232/2230-USB4-SSD-Enclosure-Design) (MIT, see [`LICENSE-upstream-MIT`](LICENSE-upstream-MIT)) | Mine |
+|---|---|
+| schematic, component placement, USB4/PCIe routing (not modified) | KiCad 9 conversion and fab package, smallest outline, case CAD, SSD and cable fit, BOM with suppliers and costs, flashing procedure and check tool, the CARTOUCHE software |
 
-Ours: the conversion to KiCad 9 and the fabrication package, the choice of the
-smallest outline for a closed case, the **case design** (CAD source here), the SSD
-and cable fit, the BOM with suppliers and costs, the firmware/flashing procedure
-and check tool, and the CARTOUCHE software that runs on it.
-
-The schematic was imported from the original Altium project into KiCad 9
+Schematic imported from the original Altium project into KiCad 9
 (`pcb/cartouche-usb4.kicad_sch`, symbols in `pcb/ASM2464PD-altium-import.kicad_sym`).
 
 ## How to get it made
 
-Board: 4 layers · FR-4 TG150 · **1.6 mm** · ENIG · 1 oz outer / 0.5 oz inner ·
-**85 Ω differential pairs** on the outer layers · 3.5/3.5 mil · 0.2 mm tented vias ·
-**assembled by the fab** (the ASM2464PD is a 0.46 mm pitch BGA). Do not refill the
-copper zones in KiCad (they come from the proven original).
+| Board parameter | Value |
+|---|---|
+| Layers / material | 4 layers, FR-4 TG150, 1.6 mm |
+| Finish / copper | ENIG, 1 oz outer / 0.5 oz inner |
+| Impedance | 85 Ω differential pairs on the outer layers |
+| Track / space, vias | 3.5 / 3.5 mil, 0.2 mm tented vias |
+| Assembly | by the fab (ASM2464PD = 0.46 mm pitch BGA) |
+| Copper zones | do not refill in KiCad (from the tested original) |
 
-Then: plug the SSD, place the thermal pad, screw the board and SSD into the base,
-close the lid, flash the firmware once ([`firmware/`](firmware)).
+1. Order the board assembled (PCBA).
+2. Plug the SSD, place the thermal pad.
+3. Screw the board and SSD into the base, close the lid.
+4. Flash the firmware once ([`firmware/`](firmware)).
 
 ## Status
 
-Board designed and ready to order; case designed, to be test-printed; not built
-yet. Speeds are expected values until measured on the prototype.
-
-A French version of the board notes is in [`README.fr.md`](README.fr.md).
+We're working on testing our own Éclair boards, and then, why not, making a sort of
+mini computer you plug into your PC that runs the model on its own RAM and its own
+storage.
 
 ## Licence
 
