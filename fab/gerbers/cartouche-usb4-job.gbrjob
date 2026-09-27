@@ -1,0 +1,170 @@
+{
+  "Header": {
+    "GenerationSoftware": {
+      "Vendor": "KiCad",
+      "Application": "Pcbnew",
+      "Version": "9.0.7"
+    },
+    "CreationDate": "2026-09-26T18:39:03+02:00"
+  },
+  "GeneralSpecs": {
+    "ProjectId": {
+      "Name": "cartouche-usb4",
+      "GUID": "63617274-6f75-4636-9865-2d757362342e",
+      "Revision": "rev?"
+    },
+    "Size": {
+      "X": 30.1,
+      "Y": 63.94
+    },
+    "LayerNumber": 4,
+    "BoardThickness": 0.784,
+    "Finish": "None"
+  },
+  "DesignRules": [
+    {
+      "Layers": "Outer",
+      "PadToPad": 0.0889,
+      "PadToTrack": 0.0889,
+      "TrackToTrack": 0.0889,
+      "MinLineWidth": 0.0813,
+      "TrackToRegion": 0.5,
+      "RegionToRegion": 0.5
+    },
+    {
+      "Layers": "Inner",
+      "PadToPad": 0.0889,
+      "PadToTrack": 0.0889,
+      "TrackToTrack": 0.0889,
+      "MinLineWidth": 0.127,
+      "TrackToRegion": 0.5,
+      "RegionToRegion": 0.5
+    }
+  ],
+  "FilesAttributes": [
+    {
+      "Path": "cartouche-usb4-Top Layer.gtl",
+      "FileFunction": "Copper,L1,Top",
+      "FilePolarity": "Positive"
+    },
+    {
+      "Path": "cartouche-usb4-Layer 1.g1",
+      "FileFunction": "Copper,L2,Inr",
+      "FilePolarity": "Positive"
+    },
+    {
+      "Path": "cartouche-usb4-Layer 2.g2",
+      "FileFunction": "Copper,L3,Inr",
+      "FilePolarity": "Positive"
+    },
+    {
+      "Path": "cartouche-usb4-Bottom Layer.gbl",
+      "FileFunction": "Copper,L4,Bot",
+      "FilePolarity": "Positive"
+    },
+    {
+      "Path": "cartouche-usb4-Top Paste.gtp",
+      "FileFunction": "SolderPaste,Top",
+      "FilePolarity": "Positive"
+    },
+    {
+      "Path": "cartouche-usb4-Bottom Paste.gbp",
+      "FileFunction": "SolderPaste,Bot",
+      "FilePolarity": "Positive"
+    },
+    {
+      "Path": "cartouche-usb4-Top Overlay.gto",
+      "FileFunction": "Legend,Top",
+      "FilePolarity": "Positive"
+    },
+    {
+      "Path": "cartouche-usb4-Bottom Overlay.gbo",
+      "FileFunction": "Legend,Bot",
+      "FilePolarity": "Positive"
+    },
+    {
+      "Path": "cartouche-usb4-Top Solder.gts",
+      "FileFunction": "SolderMask,Top",
+      "FilePolarity": "Negative"
+    },
+    {
+      "Path": "cartouche-usb4-Bottom Solder.gbs",
+      "FileFunction": "SolderMask,Bot",
+      "FilePolarity": "Negative"
+    },
+    {
+      "Path": "cartouche-usb4-Edge_Cuts.gm1",
+      "FileFunction": "Profile",
+      "FilePolarity": "Positive"
+    }
+  ],
+  "MaterialStackup": [
+    {
+      "Type": "Legend",
+      "Name": "Top Silk Screen"
+    },
+    {
+      "Type": "SolderPaste",
+      "Name": "Top Solder Paste"
+    },
+    {
+      "Type": "SolderMask",
+      "Thickness": 0.01,
+      "Name": "Top Solder Mask"
+    },
+    {
+      "Type": "Copper",
+      "Thickness": 0.035,
+      "Name": "Top Layer"
+    },
+    {
+      "Type": "Dielectric",
+      "Thickness": 0.208,
+      "Material": "FR4",
+      "Name": "Top Layer/Layer 1",
+      "Notes": "Type: dielectric layer 1 (from Top Layer to Layer 1)"
+    },
+    {
+      "Type": "Copper",
+      "Thickness": 0.035,
+      "Name": "Layer 1"
+    },
+    {
+      "Type": "Dielectric",
+      "Thickness": 0.208,
+      "Material": "FR4",
+      "Name": "Layer 1/Layer 2",
+      "Notes": "Type: dielectric layer 2 (from Layer 1 to Layer 2)"
+    },
+    {
+      "Type": "Copper",
+      "Thickness": 0.035,
+      "Name": "Layer 2"
+    },
+    {
+      "Type": "Dielectric",
+      "Thickness": 0.208,
+      "Material": "FR4",
+      "Name": "Layer 2/Bottom Layer",
+      "Notes": "Type: dielectric layer 3 (from Layer 2 to Bottom Layer)"
+    },
+    {
+      "Type": "Copper",
+      "Thickness": 0.035,
+      "Name": "Bottom Layer"
+    },
+    {
+      "Type": "SolderMask",
+      "Thickness": 0.01,
+      "Name": "Bottom Solder Mask"
+    },
+    {
+      "Type": "SolderPaste",
+      "Name": "Bottom Solder Paste"
+    },
+    {
+      "Type": "Legend",
+      "Name": "Bottom Silk Screen"
+    }
+  ]
+}
