@@ -39,7 +39,7 @@ Item,Qty per unit,Reference,Value,Package,Manufacturer,Manufacturer part number,
 38,2,Screws,M3 x 12 countersunk (ISO 10642),,,,https://www.amazon.fr/s?k=vis+M3+12mm+tete+fraisee,≈ EUR 0.10,maker,base + board + lid (board holes Ø3.2)
 39,1,Screw,M2 x 10 countersunk,,,,https://www.amazon.fr/s?k=vis+M2+10mm+tete+fraisee,≈ EUR 0.10,maker,rear closing screw
 40,1,Screw,M2 x 3 (M.2 SSD screw),,,,https://www.amazon.fr/s?k=vis+m.2+ssd+kit,≈ EUR 0.10,maker,holds the SSD on the standoff
-41,1,Thermal pad,"1 mm, ≥ 12 W/mK, cut 10 x 10 mm (chip) + 20 x 22 mm (SSD)",,,,https://www.amazon.fr/s?k=pad+thermique+1mm+12w,≈ EUR 0.40,maker,between the ASM2464PD and the lid boss, and between the SSD and the base boss
+41,1,Thermal pad,"1 mm, ≥ 12 W/mK, cut 10 x 10 mm (chip) + 20 x 22 mm (SSD)",,,,https://www.amazon.fr/s?k=pad+thermique+1mm+12w,≈ EUR 0.40,maker,"between the ASM2464PD and the lid boss, and between the SSD and the base boss"
 42,1,Case,case_base + case_lid (cad/out),"aluminium CNC anodised, or 3D print for tests",,,https://jlccnc.com,≈ EUR 15–35,maker,laser-engraved lid
 43,1,Cable,"USB-C to USB-C, USB4 40 Gb/s, 0.5 m",,UGREEN or equivalent,,https://www.amazon.fr/s?k=cable+usb4+40gbps+0.5m,≈ EUR 15,maker,full speed
 44,1,Cable,"USB-A to USB-C, 10 Gb/s, 0.5 m",,,,https://www.amazon.fr/s?k=cable+usb+a+usb+c+10gbps+0.5m,≈ EUR 10,maker,computers without USB-C
