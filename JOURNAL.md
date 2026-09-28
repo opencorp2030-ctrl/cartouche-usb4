@@ -132,8 +132,10 @@ I updated the website with new animations so customers can understand.
 
 This project is aimed at young devs at my high school: I talked about it with the principal and with some students who would be very interested in buying one at cost.
 
-![Fins under the case](https://raw.githubusercontent.com/opencorp2030-ctrl/cartouche-usb4/main/docs/images/model-bottom.png)
+![Cooling: heat path inside the case (section, to scale)](https://raw.githubusercontent.com/opencorp2030-ctrl/cartouche-usb4/main/docs/images/cooling-diagram.png)
 
-![Cooling diagram: heat path, to scale](https://raw.githubusercontent.com/opencorp2030-ctrl/cartouche-usb4/main/docs/images/cooling-diagram.png)
+![Airflow direction under the desk (cross-section, to scale)](https://raw.githubusercontent.com/opencorp2030-ctrl/cartouche-usb4/main/docs/images/airflow-diagram.png)
+
+![Expected temperatures before / after the cooling changes (estimate)](https://raw.githubusercontent.com/opencorp2030-ctrl/cartouche-usb4/main/docs/images/cooling-estimate.png)
 
 **Total time spent: 2h**

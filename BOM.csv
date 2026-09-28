@@ -48,3 +48,5 @@ Item,Qty per unit,Reference,Value,Package,Manufacturer,Manufacturer part number,
 47,1,Dock cable,"USB-C to USB-C, USB4 40 Gb/s, 0.8 m",,,,https://www.amazon.fr/s?k=cable+usb4+40gbps+0.8m,≈ EUR 15,maker (optional dock),stays in the dock
 48,2,Wood screws,countersunk Ø4 × 16,,,,https://www.amazon.fr/s?k=vis+bois+tete+fraisee+4x16,≈ EUR 0.20,maker (optional dock),dock under the desk
 49,4,Clamp screws,M2 × 5 countersunk,,,,https://www.amazon.fr/s?k=vis+m2+fraisee,≈ EUR 0.20,maker (optional dock),clamp plate
+TOTAL,,,"One CARTOUCHE Éclair V1 256 GB, all parts + case + cables + box (batch of 10)",,,,docs/COSTS.md,≈ EUR 149.00,,per unit; prices at cost in docs/COSTS.md
+TOTAL,,,Éclair V1 256 GB + Éclair Dock,,,,docs/COSTS.md,≈ EUR 206.50,,"per unit, dock included"

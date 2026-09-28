@@ -188,7 +188,14 @@ Same content as [`BOM.csv`](BOM.csv).
 | 38 | 2 | M3 x 12 countersunk (ISO 10642) |  |  |  | ≈ EUR 0.10 | [link](https://www.amazon.fr/s?k=vis+M3+12mm+tete+fraisee) |
 | 39 | 1 | M2 x 10 countersunk |  |  |  | ≈ EUR 0.10 | [link](https://www.amazon.fr/s?k=vis+M2+10mm+tete+fraisee) |
 | 40 | 1 | M2 x 3 (M.2 SSD screw) |  |  |  | ≈ EUR 0.10 | [link](https://www.amazon.fr/s?k=vis+m.2+ssd+kit) |
-| 41 | 1 | 1 mm, ≥ 12 W/mK, cut 10 x 10 mm |  |  |  | ≈ EUR 0.40 | [link](https://www.amazon.fr/s?k=pad+thermique+1mm+12w) |
+| 41 | 1 | 1 mm, ≥ 12 W/mK, cut 10 x 10 mm (chip) + 20 x 22 mm (SSD) |  |  |  | ≈ EUR 0.40 | [link](https://www.amazon.fr/s?k=pad+thermique+1mm+12w) |
 | 42 | 1 | case_base + case_lid (cad/out) | aluminium CNC anodised, or 3D print for tests |  |  | ≈ EUR 15–35 | [link](https://jlccnc.com) |
 | 43 | 1 | USB-C to USB-C, USB4 40 Gb/s, 0.5 m |  | UGREEN or equivalent |  | ≈ EUR 15 | [link](https://www.amazon.fr/s?k=cable+usb4+40gbps+0.5m) |
 | 44 | 1 | USB-A to USB-C, 10 Gb/s, 0.5 m |  |  |  | ≈ EUR 10 | [link](https://www.amazon.fr/s?k=cable+usb+a+usb+c+10gbps+0.5m) |
+| 45 | 1 | Éclair Dock, CNC aluminium, polished (cad/out/dock_body.step) |  |  |  | ≈ EUR 35 | [link](https://jlccnc.com) |
+| 46 | 1 | cable clamp plate (cad/out/dock_clamp.step) |  |  |  | ≈ EUR 5 | [link](https://jlccnc.com) |
+| 47 | 1 | USB-C to USB-C, USB4 40 Gb/s, 0.8 m |  |  |  | ≈ EUR 15 | [link](https://www.amazon.fr/s?k=cable+usb4+40gbps+0.8m) |
+| 48 | 2 | countersunk Ø4 × 16 |  |  |  | ≈ EUR 0.20 | [link](https://www.amazon.fr/s?k=vis+bois+tete+fraisee+4x16) |
+| 49 | 4 | M2 × 5 countersunk |  |  |  | ≈ EUR 0.20 | [link](https://www.amazon.fr/s?k=vis+m2+fraisee) |
+| **TOTAL** |  | **One CARTOUCHE Éclair V1 256 GB, all parts + case + cables + box (batch of 10)** |  |  |  | **≈ EUR 149.00** | [docs/COSTS.md](docs/COSTS.md) |
+| **TOTAL** |  | **Éclair V1 256 GB + Éclair Dock** |  |  |  | **≈ EUR 206.50** | [docs/COSTS.md](docs/COSTS.md) |
