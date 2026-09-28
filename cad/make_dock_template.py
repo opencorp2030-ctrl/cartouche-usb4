@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """1:1 drilling template for the Éclair Dock (A4 PDF), from the CAD numbers in
-hardware/cartouche-usb4/cad/eclair_v1.py. Output: site/assets/gabarit-support-eclair.pdf"""
+hardware/cartouche-usb4/cad/eclair_v1.py. Output: docs/dock-drilling-template.pdf"""
 import os, matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
@@ -33,5 +33,5 @@ steps = ["1. Scotcher le gabarit sous le bureau, la ligne du bas sur le bord.", 
          "3. Retirer le gabarit, percer Ø2,5 mm sur 14 mm (plateau de 18 mm d’épaisseur minimum).", "4. Visser le support : 2 vis à bois Ø4 × 16 tête fraisée, sans forcer."]
 for i, t in enumerate(steps): ax.text(20, 100 - i * 8, t, fontsize=8)
 ax.text(105, 12, "cartouche.candygate.eu/support-pose.html · d'après le modèle CAD (eclair_v1.py)", ha="center", fontsize=6, color="#666")
-out = os.path.join(ROOT, "site", "assets", "gabarit-support-eclair.pdf")
+out = os.path.join(ROOT, "docs", "dock-drilling-template.pdf")
 fig.savefig(out); print(out)
