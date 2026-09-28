@@ -202,3 +202,24 @@ I think it's a big and very important change, because it will save people time w
 ![Éclair sliding into the dock](https://raw.githubusercontent.com/opencorp2030-ctrl/cartouche-usb4/main/docs/images/dock-top.png)
 
 **Total time spent: 4h**
+
+# September 28: Active cooling on the web
+
+I made four pages about the dock to better explain how it works. The animations make it easy to really see how it works.
+
+Details from the git history (commit time → what changed):
+
+- 17:33 first 3D section for the dock on the Éclair page
+- 17:59 a dedicated long 3D page for the dock (exploded parts, desk side, screws, cable, slide-in, x-ray, colours, airflow, dimensions)
+- 18:07 the film made about 5× longer (machining from a block, polish, clearance close-up, plug seating, load timer)
+- 18:11 soft shadows, oak desk, fluted end mill, cable along the desk, phone framing
+- 19:00 four pages on a shared 3D engine: the object, the installation (1:1 drilling template PDF, drill, screws, cable to the PC), everyday use (three Éclair, laptop), the heat (heat map from the estimate, section, pads, fins, blocked air vs 5 mm gap)
+- 21:57 bug fixes: mirrored template, the "it goes with you" sequence
+
+![Installation page: drilling](https://raw.githubusercontent.com/opencorp2030-ctrl/cartouche-usb4/main/docs/images/journal-support-pose.png)
+
+![Heat page: heat map in section](https://raw.githubusercontent.com/opencorp2030-ctrl/cartouche-usb4/main/docs/images/journal-support-chaleur.png)
+
+![Everyday page: on a laptop](https://raw.githubusercontent.com/opencorp2030-ctrl/cartouche-usb4/main/docs/images/journal-support-quotidien.png)
+
+**Total time spent: 3h30m**
