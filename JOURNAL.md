@@ -5,15 +5,62 @@ description: "CARTOUCHE is a way to store heavy AI models and run them easily an
 created_at: "2026-09-26"
 ---
 
-# September 26: Website
+# September 26: Website 1/3 — redesign, order configurator, accounts, payment
 
 Creating animations on the website on Sandisk, Seagate and Eclair pages : https://cartouche.candygate.eu !
 
 Changing the shop page to something better
 
-![Website](https://fabricate.hackclub-assets.com/bd5466791f4c06c3553c53bc964fcf3c3adecd0c7c2981288de564d6f88efdc1/Screenshot%202026-09-27%20at%2011.03.17%E2%80%AFAM.png)
+Details from the git history (commit time → what changed):
 
-**Total time spent: 13h48m**
+- 12:29 first redesign: "object" look (paper, ink, Geist font), key in real-time 3D
+- 12:43 simpler clean version (white, centred, static product renders)
+- 13:44 professional version without images (Tailwind CSS, shadcn/ui style)
+- 13:53 redone from zero: white, big typography, no images (the style kept today)
+- 16:28 order configurator, CARTOUCHE accounts, developer program page, SEO
+- 17:18 Supabase: developer form open, accounts behind a switch
+- 17:31 payment: Stripe page created for each order (create-checkout), webhook on the order metadata
+- 17:57 accounts opened (payments still closed)
+
+![Shop configurator](https://raw.githubusercontent.com/opencorp2030-ctrl/cartouche-usb4/main/docs/images/journal-site-shop.png)
+
+**Total time spent: 4h30m**
+
+# September 26: Website 2/3 — SanDisk shop, printed notice, Authenticity and FAQ pages
+
+Details from the git history (commit time → what changed):
+
+- 19:44 shop: CARTOUCHE on the metal SanDisk Ultra Dual Drive Luxe key (USB-A + USB-C), 64 GB to 1 TB, silver or gold
+- 19:55 stock editable in stock.json, 512 GB out of stock, 2 TB added, SanDisk banner
+- 20:01 preinstalled models up to half of the key
+- 21:34 step-by-step scrolling in the shop (mouse wheel / trackpad)
+- 21:47 printable A4 notice (4-panel fold, FR/EN), models shown as a grid in the shop
+- 21:54 site → key connection working with Chrome/Edge "Local Network Access"
+- 22:13 animated Authenticity page, official SanDisk logo with a non-affiliation note
+- 22:25 full FAQ (43 questions, FAQ data for Google), Authenticity page in 12 animated steps
+- 22:34 help shown when Edge silently blocks the connection to the key
+- 22:38 Authenticity page: 20 sections (signing keys, verified models, revocation…)
+
+![FAQ page](https://raw.githubusercontent.com/opencorp2030-ctrl/cartouche-usb4/main/docs/images/journal-site-faq.png)
+
+**Total time spent: 4h30m**
+
+# September 26: Website 3/3 — "The key" page, personalisation, pre-orders, Seagate page
+
+Details from the git history (commit time → what changed):
+
+- 22:49 "The key" page: 20 animated sections (measured speed, load time, connectors, metal, comparison)
+- 22:59 scroll-driven opening: giant SanDisk logo, metal key rising, rotating ring
+- 23:18 shop: 5 personalisation steps (your AI, start-up model, settings, key name, gift)
+- 23:25 real photo of the key in two layers (the rotating cover), cut out with free tools (rembg, Segment Anything)
+- 23:43 "The key" and Authenticity sections fitted to the screen height (phones too)
+- 23:56 animated Authenticity opening, fuller account page
+- Sep 27, 09:40 free pre-orders, 2 TB option on a Seagate disk, key photo per colour, gift card
+- Sep 27, 09:53 → 10:09 Seagate page: animated opening, then longer (the port, the cable plugging in, the laptop)
+
+![The key page](https://raw.githubusercontent.com/opencorp2030-ctrl/cartouche-usb4/main/docs/images/journal-site-key.png)
+
+**Total time spent: 4h48m**
 
 # September 26: Choosing the components — USB4 + NVMe 2230
 
@@ -139,3 +186,19 @@ This project is aimed at young devs at my high school: I talked about it with th
 ![Expected temperatures before / after the cooling changes (estimate)](https://raw.githubusercontent.com/opencorp2030-ctrl/cartouche-usb4/main/docs/images/cooling-estimate.png)
 
 **Total time spent: 2h**
+
+# September 28: Offering an ecosystem
+
+Personally, I plan to use this drive myself. Actually, it's not really a USB key anymore. I plan to use it as a case plugged in under the desk, plugged in all day. My PC is on all day, and I can easily come and change the drive, change the cartridge, put in a code model or an image generation model depending on what I need. And that way I don't have to struggle with the cable: I just take it, pull it out, it's easy.
+
+From what I understood, the air heats up around the small fins, rises through the slots in the plate and leaves through the 5 mm gap at both ends of the dock. There is no fan: it's passive cooling, a bit like a MacBook Air.
+
+I think it's a big and very important change, because it will save people time while offering a product that also gets rid of the heat a bit better, so it's a really nice improvement.
+
+![Dock, desk side: rails, screw bosses and air slots](https://raw.githubusercontent.com/opencorp2030-ctrl/cartouche-usb4/main/docs/images/dock-desk-side.png)
+
+![Airflow under the desk](https://raw.githubusercontent.com/opencorp2030-ctrl/cartouche-usb4/main/docs/images/airflow-diagram.png)
+
+![Éclair sliding into the dock](https://raw.githubusercontent.com/opencorp2030-ctrl/cartouche-usb4/main/docs/images/dock-top.png)
+
+**Total time spent: 4h**
