@@ -112,6 +112,25 @@ lip = lip.cut(cq.Workplane("XY").workplane(offset=SPLIT - 1)                   #
 lip = lip.cut(hole(*REAR, SPLIT - 1, SPLIT + 3, 5.4))                          # clear the lid's rear post
 base = base.union(lip)
 
+# ---- passive cooling (v1.2) -------------------------------------------------------
+# Leaves232's README: "ASM2464PD finished product will inevitably overheat and
+# disconnect without heat dissipation" (he used a laptop fan). No fan here, so:
+#  - the chip already presses a 1 mm pad on a boss of the aluminium lid (below);
+#  - the SSD now presses a 1 mm pad (20 x 22 mm) on a boss of the aluminium base,
+#    so the base spreads the SSD's heat too;
+#  - 5 fins under the base add surface (the top stays flat for the engraving).
+SSD_PAD = dict(w=20.0, l=22.0, t=1.0, squeeze=0.8)                  # pad squeezed to 0.8 mm
+SSD_LOW = SSD_NEAR - SSD_T - SSD_CHIPS                              # lowest SSD part, -4.05
+PAD_Y = SSD_EDGE - 5.0 - SSD_PAD["l"] / 2                          # under controller + NAND
+base = base.union(cq.Workplane("XY").workplane(offset=Z_FLOOR_IN - 0.01)
+                  .center(CX, PAD_Y).rect(SSD_PAD["w"], SSD_PAD["l"])
+                  .extrude(SSD_LOW - SSD_PAD["squeeze"] - Z_FLOOR_IN + 0.01))    # CHECK with the real SSD
+FIN_H, FIN_W, FIN_Y0, FIN_Y1 = 1.0, 1.2, -96.0, -146.0             # clear of the screw countersinks
+for dx in (-8, -4, 0, 4, 8):
+    base = base.union(cq.Workplane("XY").workplane(offset=Z_BOT - FIN_H)
+                      .center(CX + dx, (FIN_Y0 + FIN_Y1) / 2).rect(FIN_W, FIN_Y0 - FIN_Y1)
+                      .extrude(FIN_H + 0.01).edges("|Z").fillet(0.5))
+
 # ---- lid: roof, walls down to the split, USB-C opening, screw bosses, heat boss --
 lid = outer_block(SPLIT, Z_TOP).cut(cavity(SPLIT - 1, Z_ROOF_IN))
 lid = lid.cut(cavity(SPLIT - 1, SPLIT + 1.25, shrink=-0.15))                  # seat for the base lip
@@ -193,10 +212,11 @@ checks = {
     "SSD in mock-up slot (must be 0)": vol(ssd, mock),
     "SSD x case base": vol(ssd, base), "SSD x case lid": vol(ssd, lid),
     "mock-up x base": vol(mock, base), "mock-up x lid": vol(mock, lid),
+    "SSD pad boss top (Z)": SSD_LOW - SSD_PAD["squeeze"],
     "plug x lid": vol(plug, lid), "plug x base": vol(plug, base), "base x lid": vol(base, lid),
 }
 for k, v in checks.items():
-    print(f"{k:34s} {v:8.2f} mm3")
+    print(f"{k:34s} {v:8.2f}")
 print(f"SSD card: Z {SSD_NEAR - SSD_T:.2f} .. {SSD_NEAR:.2f}, edge Y {SSD_EDGE:.2f}, end {SSD_END:.2f}")
 asm = (cq.Assembly(name="eclair_v1")
        .add(board, name="board")

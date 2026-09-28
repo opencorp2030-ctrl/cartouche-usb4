@@ -12,7 +12,7 @@ Website: [cartouche.candygate.eu](https://cartouche.candygate.eu/eclair.html)
 | Board | 22.0 × 33.7 mm, 4 layers, 1.6 mm |
 | USB4 controller | ASMedia ASM2464PD, 40 Gb/s, PCIe 4.0 x4 |
 | Storage | M.2 2230 NVMe SSD, 256 GB – 2 TB |
-| Case | aluminium, 25 × 65 × 13 mm, laser-engraved, 3 colours |
+| Case | aluminium, 25 × 65.7 × 14.4 mm with the cooling fins, laser-engraved, 3 colours |
 | Expected speed | ≈ 3.5 GB/s on USB4 / Thunderbolt, ≈ 1 GB/s on USB 3.2 (not measured yet) |
 | In the box | USB-C 40 Gb/s cable + USB-A cable |
 
@@ -73,7 +73,7 @@ on the website.
 | Assembly order | plug the SSD into the board outside the case, press it flat, lay board + SSD into the base, M2 screw, then the lid |
 | Rear | 1 × M2 × 10 screw |
 | USB-C | receptacle flush with the front; plug model included, mated and checked |
-| Cooling | lid boss + 1 mm thermal pad on the ASM2464PD |
+| Cooling (passive, no fan) | lid boss + 1 mm thermal pad on the ASM2464PD; base boss + 1 mm thermal pad (20 × 22 mm) under the SSD; 5 fins under the base (1 mm). Leaves232 warns the ASM2464PD overheats and disconnects without cooling (he used a laptop fan): to be checked with a 15 min transfer on the aluminium prototype |
 | Interference check | no overlap between board, SSD, plug, base and lid |
 | Fit test | print `case_base.stl`, `case_lid.stl`, `ssd_2230.stl`, `board_mockup.stl` (the mock-up has a 1.0 mm card slot cut in the connector); values to confirm are marked `CHECK` in `eclair_v1.py` |
 | Fit check (CadQuery) | 0 mm³ overlap between SSD, board, case base, lid and USB-C plug |
