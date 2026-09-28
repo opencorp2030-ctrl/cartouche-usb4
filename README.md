@@ -102,6 +102,12 @@ The chart is an estimate from a simple thermal-resistance model (assumptions und
 
 ![airflow under the desk](docs/images/airflow-diagram.png)
 
+**Installing it**: a 1:1 drilling template is in [`docs/dock-drilling-template.pdf`](docs/dock-drilling-template.pdf) (print at 100 %, check the 50 mm bar; generated from the CAD numbers by `cad/make_dock_template.py`). Pilot holes Ø2.5 × 14 mm, desk top 18 mm thick minimum.
+
+**Print test**: print `cad/out/dock_body.stl` (rails flat on the bed), `dock_clamp.stl`, `case_base.stl` and `case_lid.stl` in PLA/PETG, 0.2 mm layers. The 0.25 mm clearance is meant for machined aluminium; on an FDM print, sand the lips lightly if Éclair rubs.
+
+3D films of the dock (object, installation, everyday use, cooling): https://cartouche.candygate.eu/support.html
+
 ## Credit: what is mine and what is not
 
 For this prototype, I'd rather start from something that works, even if I have to
