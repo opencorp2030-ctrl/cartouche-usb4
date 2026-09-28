@@ -9,6 +9,8 @@ and eclair_v1_assembly.step / .glb (board + SSD + case + plug, mated).
 
 Run: python eclair_v1.py   (CadQuery 2.x)
 Values marked CHECK are the ones to confirm with a printed test and real parts.
+v1.3: M.2 connector changed to the LOTES APCI0113-P001A (4.75 mm): SSD 1.25 mm lower,
+base 1.25 mm deeper, screw heads counterbored 1.25 mm so the v1.2 screws still fit.
 """
 import os
 import cadquery as cq
@@ -31,20 +33,27 @@ CHIP = dict(x=151.24, y=-106.88, top=2.58, size=10.0)        # ASM2464PD, top of
 TOP_PARTS = 4.80                   # highest part above Z=0 (USB-C shell)
 
 # ---- the SSD (M.2 2230, M key) -----------------------------------------------
-# Connector CN1 = ARGOSY NASM0-S6701-TPH4 (M.2 M key, 3.0 mm high), mounted on the
-# board's BOTTOM side. Datasheet (LCSC C364435, drawing NXSM0-S67XX-XXH4):
-#   - mated card at "1.90 REF" from the board  -> card face nearest the board at Z = -1.90
-#   - "module seating plane to alignment post 1.75"; the Ø1.60 / Ø1.10 posts are the
-#     NPTH holes at Y = -115.646 (drill file)       -> card edge at Y = -117.40
+# Connector CN1 = LOTES APCI0113-P001A (M.2 M key, H4.8, LCSC/JLCPCB C841669), mounted
+# on the board's BOTTOM side. v1.1-v1.2 used the ARGOSY NASM0-S6701-TPH4 (3.0 mm high,
+# card at 1.90 mm): it is out of stock everywhere, so v1.3 follows the LOTES part, whose
+# footprint the board already has (drawing AP-APCI0113 rev 1A, sheet 4: NPTH Ø1.10 and
+# Ø1.60, 20.00 mm apart = our holes at Y = -115.646).
+#   - body 4.75 ±0.15 high, 21.85 wide (sheet 1)
+#   - card face nearest the board at 3.15 (section O-O, sheet 1); the stack-up on sheet 3
+#     allows up to 3.30 (5.30 max to the top of the module - 1.20 parts - 0.80 card)
+#                                                    -> Z = -3.15   CHECK on the real part
+#   - card edge 1.75 past the post line (section O-O), same as the ARGOSY part
+#                                                    -> card edge at Y = -117.40
 # v1.0 had the card at -3.0 (1.1 mm too low, below the slot) and 0.35 mm too deep:
 # a real SSD could not be plugged in. Fixed in v1.1.
 SSD_W, SSD_L, SSD_T = 22.0, 30.0, 0.8
 CN1_POST_Y = -115.646
-SSD_NEAR = -1.90                   # card face towards the board
+SSD_NEAR = -3.15                   # card face towards the board (LOTES H4.8)
 SSD_CHIPS = 1.35                   # parts on the far side (single-sided 2230, S3)
 SSD_EDGE = CN1_POST_Y - 1.75       # -117.40: card edge seated in the connector
 SSD_END = SSD_EDGE - SSD_L         # -147.40: screw notch centre   CHECK with a real SSD
-CN1 = dict(x0=137.51, x1=159.51, y0=-121.35, y1=-112.80, z0=-3.29)   # connector body (STEP)
+CN1 = dict(x0=137.51, x1=159.51, y0=-121.35, y1=-112.80, z0=-3.29)   # ARGOSY body in the board STEP
+CN1_H = 4.75 + 0.15                # LOTES body height + tolerance: the mock-up body is this tall
 NOTCH_R = 1.75
 
 # ---- the case ----------------------------------------------------------------
@@ -55,7 +64,8 @@ FRONT_OUT = USBC["face"]           # receptacle face flush with the case front
 FRONT_IN = FRONT_OUT - 1.0         # front wall 1.0 mm, above the board
 BACK_IN = SSD_END - 5.2            # room for the SSD screw head and the rear post
 BACK_OUT = BACK_IN - WALL
-Z_FLOOR_IN = -5.65                 # kept from v1.0 (screw lengths); 1.6 mm under the SSD chips
+Z_FLOOR_IN = SSD_NEAR - SSD_T - SSD_CHIPS - 1.6   # 1.6 mm under the SSD chips: -6.90 (v1.2: -5.65)
+SINK = -5.65 - Z_FLOOR_IN          # 1.25: the screw heads sit this much deeper, so v1.2 screw lengths still fit
 Z_BOT = Z_FLOOR_IN - FLOOR
 Z_ROOF_IN = TOP_PARTS + 0.5                        # 5.30
 Z_TOP = Z_ROOF_IN + ROOF
@@ -99,12 +109,15 @@ for x, y in HOLES:                                  # board posts, M3 passes thr
     base = base.union(post(x, y, Z_FLOOR_IN, SPLIT, 5.6))
     base = base.cut(hole(x, y, Z_BOT - 1, SPLIT + 1, 3.4))
     base = base.cut(cq.Workplane("XY").workplane(offset=Z_BOT).center(x, y)
+                    .circle(3.1).extrude(SINK))                                  # counterbore
+    base = base.cut(cq.Workplane("XY").workplane(offset=Z_BOT + SINK).center(x, y)
                     .circle(3.1).workplane(offset=1.7).circle(1.7).loft())      # countersink
 base = base.union(post(CX, SSD_END, Z_FLOOR_IN, SSD_NEAR - SSD_T, 4.2))       # SSD standoff
 base = base.cut(hole(CX, SSD_END, Z_FLOOR_IN, SSD_NEAR, 1.7))                # M2 pilot   CHECK
 base = base.union(post(*REAR, Z_FLOOR_IN, SPLIT, 4.6))                        # rear post
 base = base.cut(hole(*REAR, Z_BOT - 1, SPLIT + 1, 2.4))
-base = base.cut(cq.Workplane("XY").workplane(offset=Z_BOT).center(*REAR).circle(2.2).workplane(offset=1.2).circle(1.2).loft())
+base = base.cut(cq.Workplane("XY").workplane(offset=Z_BOT).center(*REAR).circle(2.2).extrude(SINK))
+base = base.cut(cq.Workplane("XY").workplane(offset=Z_BOT + SINK).center(*REAR).circle(2.2).workplane(offset=1.2).circle(1.2).loft())
 # lip around the cavity, above the split, that the lid slides over
 lip = cavity(SPLIT, SPLIT + 1.2).cut(cavity(SPLIT - 1, SPLIT + 2, shrink=LIP))
 lip = lip.cut(cq.Workplane("XY").workplane(offset=SPLIT - 1)                   # no lip where the board sits
@@ -120,7 +133,7 @@ base = base.union(lip)
 #    so the base spreads the SSD's heat too;
 #  - 5 fins under the base add surface (the top stays flat for the engraving).
 SSD_PAD = dict(w=20.0, l=22.0, t=1.0, squeeze=0.8)                  # pad squeezed to 0.8 mm
-SSD_LOW = SSD_NEAR - SSD_T - SSD_CHIPS                              # lowest SSD part, -4.05
+SSD_LOW = SSD_NEAR - SSD_T - SSD_CHIPS                              # lowest SSD part, -5.30
 PAD_Y = SSD_EDGE - 5.0 - SSD_PAD["l"] / 2                          # under controller + NAND
 base = base.union(cq.Workplane("XY").workplane(offset=Z_FLOOR_IN - 0.01)
                   .center(CX, PAD_Y).rect(SSD_PAD["w"], SSD_PAD["l"])
@@ -253,13 +266,15 @@ SLOT_H = 1.0
 slot = (cq.Workplane("XY").workplane(offset=SSD_NEAR - SSD_T - (SLOT_H - SSD_T) / 2)
         .center(CX, (CN1["y0"] - 2 + SSD_EDGE + 0.3) / 2)
         .rect(SSD_W + 0.4, SSD_EDGE + 0.3 - (CN1["y0"] - 2)).extrude(SLOT_H))
-mock_parts = []
-for v in board.solids().vals():
-    b = v.BoundingBox()
-    if abs(b.ymin - CN1["y0"]) < 0.05 and b.zmin < -3:          # CN1: cut the slot
-        v = cq.Workplane("XY").add(v).cut(slot).val()
-    mock_parts.append(v)
-mock = cq.Workplane("XY").add(cq.Compound.makeCompound(mock_parts))
+# v1.3: the board STEP still carries the 3.0 mm ARGOSY model; it is replaced by a block
+# of the LOTES body (4.90 high, the full old footprint in X/Y, so a little larger than
+# the real part: the checks stay on the safe side).
+cn1_body = cq.Workplane("XY").box(CN1["x1"] - CN1["x0"], CN1["y1"] - CN1["y0"], CN1_H, centered=False) \
+    .translate((CN1["x0"], CN1["y0"], -CN1_H))
+others = [v for v in board.solids().vals()
+          if not (abs(v.BoundingBox().ymin - CN1["y0"]) < 0.05 and v.BoundingBox().zmin < -3)]
+board = cq.Workplane("XY").add(cq.Compound.makeCompound(others + [cn1_body.val()]))   # used by the assemblies too
+mock = cq.Workplane("XY").add(cq.Compound.makeCompound(others + [cn1_body.cut(slot).val()]))
 cq.exporters.export(mock, os.path.join(OUT, "board_mockup.stl"), tolerance=0.1, angularTolerance=0.5)
 cq.exporters.export(mock, os.path.join(OUT, "board_mockup.step"))
 

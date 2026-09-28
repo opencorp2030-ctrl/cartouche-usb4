@@ -12,7 +12,7 @@ Website: [cartouche.candygate.eu](https://cartouche.candygate.eu/eclair.html)
 | Board | 22.0 × 33.7 mm, 4 layers, 1.6 mm |
 | USB4 controller | ASMedia ASM2464PD, 40 Gb/s, PCIe 4.0 x4 |
 | Storage | M.2 2230 NVMe SSD, 256 GB – 2 TB |
-| Case | aluminium, 25 × 65.7 × 14.4 mm with the cooling fins, laser-engraved, 3 colours |
+| Case | aluminium, 25 × 65.7 × 15.6 mm with the cooling fins, laser-engraved, 3 colours |
 | Expected speed | ≈ 3.5 GB/s on USB4 / Thunderbolt, ≈ 1 GB/s on USB 3.2 (not measured yet) |
 | In the box | USB-C 40 Gb/s cable + USB-A cable |
 
@@ -69,7 +69,7 @@ on the website.
 |---|---|
 | Halves | base + lid, split under the board |
 | Board + closing | 2 × M3 × 12 countersunk screws, from below, through the board's Ø3.2 holes into the lid |
-| SSD | in the M.2 connector (ARGOSY NASM0-S6701-TPH4, 3.0 mm): card 1.90 mm under the board, edge seated 1.75 mm past the connector posts (datasheet); M2 screw on a standoff of the base |
+| SSD | in the M.2 connector (LOTES APCI0113-P001A, 4.75 mm, since v1.3: the ARGOSY NASM0-S6701-TPH4 is out of stock): card 3.15 mm under the board, edge seated 1.75 mm past the connector posts (LOTES drawing AP-APCI0113, to confirm on the real part); M2 screw on a standoff of the base |
 | Assembly order | plug the SSD into the board outside the case, press it flat, lay board + SSD into the base, M2 screw, then the lid |
 | Rear | 1 × M2 × 10 screw |
 | USB-C | receptacle flush with the front; plug model included, mated and checked |
@@ -92,7 +92,7 @@ The chart is an estimate from a simple thermal-resistance model (assumptions und
 
 | Part | Detail |
 |---|---|
-| Size | 29.9 × 73.8 × 25.9 mm, CNC aluminium, polished |
+| Size | 29.9 × 73.8 × 27.2 mm, CNC aluminium, polished |
 | Mounting | 2 countersunk wood screws Ø4 under the desk (reachable with Éclair out) |
 | Holding Éclair | Éclair hangs upside down on two lips (engraved lid facing the room), 0.25 mm clearance, 14 mm sticks out to grip it |
 | Cable | USB4 40 Gb/s 0.8 m cable, its plug clamped in the rear block (plate + 4 × M2 countersunk): sliding Éclair in plugs it, pulling it out unplugs it |
@@ -169,9 +169,9 @@ Same content as [`BOM.csv`](BOM.csv).
 | 13 | 1 | 33u | C0402 | Murata | GRM155R60J226ME11D | CNY 0.67700 | [link](https://www.lcsc.com/search?q=GRM155R60J226ME11D) |
 | 14 | 1 | 3.3nf | C0402 | FH | 0402B332K500NT | CNY 0.00382 | [link](https://www.lcsc.com/search?q=0402B332K500NT) |
 | 15 | 1 | 330uF | CAP-SMD_L7.3-W4.3-R-RD | Panasonic | 6TPE330MAP | CNY 2.37008 | [link](https://www.lcsc.com/search?q=6TPE330MAP) |
-| 16 | 1 | M.2-MKEY CONNECTOR | CONN-SMD_APCI0113-P001A | ARGOSY | NASM0-S6701-TPH4 | CNY 1.41750 | [link](https://www.lcsc.com/search?q=NASM0-S6701-TPH4) |
+| 16 | 1 | M.2-MKEY CONNECTOR | CONN-SMD_APCI0113-P001A | LOTES | APCI0113-P001A (H4.8) | USD 0.74 | [link](https://www.lcsc.com/product-detail/C841669.html) |
 | 17 | 2 | 1uh | IND-SMD_L2.0-W1.6-B | cjiang | FTC201610S1R0MBCA | CNY 0.19611 | [link](https://www.lcsc.com/search?q=FTC201610S1R0MBCA) |
-| 18 | 1 | 19-217/R6C-AL1M2VY/3T | LED0402-RD | Everlight | 19-217/R6C-AL1M2VY/6T | CNY 0.07979 | [link](https://www.lcsc.com/search?q=19-217/R6C-AL1M2VY/6T) |
+| 18 | 1 | Red LED 0402 | LED0402-RD | Everlight | 16-213SDRC/S530-A3/TR8 | see link | [link](https://www.lcsc.com/product-detail/C71911.html) |
 | 19 | 5 | 4.7K 1% | R0402 | Uniohm | 0402WGF4701TCE | CNY 0.00219 | [link](https://www.lcsc.com/search?q=0402WGF4701TCE) |
 | 20 | 1 | 12.1K 1% | R0402 | Uniohm | 0402WGF1212TCE | CNY 0.00212 | [link](https://www.lcsc.com/search?q=0402WGF1212TCE) |
 | 21 | 3 | 100K 1% | R0402 | Uniohm | 0402WGF1003TCE | CNY 0.00200 | [link](https://www.lcsc.com/search?q=0402WGF1003TCE) |
