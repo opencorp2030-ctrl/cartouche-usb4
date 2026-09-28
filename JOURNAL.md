@@ -134,4 +134,6 @@ This project is aimed at young devs at my high school: I talked about it with th
 
 ![Fins under the case](https://raw.githubusercontent.com/opencorp2030-ctrl/cartouche-usb4/main/docs/images/model-bottom.png)
 
+![Cooling diagram: heat path, to scale](https://raw.githubusercontent.com/opencorp2030-ctrl/cartouche-usb4/main/docs/images/cooling-diagram.png)
+
 **Total time spent: 2h**

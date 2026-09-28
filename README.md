@@ -78,6 +78,8 @@ on the website.
 | Fit test | print `case_base.stl`, `case_lid.stl`, `ssd_2230.stl`, `board_mockup.stl` (the mock-up has a 1.0 mm card slot cut in the connector); values to confirm are marked `CHECK` in `eclair_v1.py` |
 | Fit check (CadQuery) | 0 mm³ overlap between SSD, board, case base, lid and USB-C plug |
 
+![cooling diagram](docs/images/cooling-diagram.png)
+
 ## Credit: what is mine and what is not
 
 For this prototype, I'd rather start from something that works, even if I have to
