@@ -1,5 +1,21 @@
 # CARTOUCHE USB4 — Development Journal
 
+## The board runs too hot
+
+**Time spent: 2h**
+
+I was thinking that a board that can handle up to 40 Gb/s would get very hot during long sessions, and since this case is meant to stay plugged in, hung under a desk, all day long, I had to avoid setting that desk on fire :)
+
+I think this is the best option: my other idea was to add a fan, but that would make the case much more fragile and noisy, and I'd also have to add vents to the case. We'll try it on the prototype, and if it gets too hot, we'll rethink the system.
+
+I updated the website with new animations so customers can understand.
+
+This project is aimed at young devs at my high school: I talked about it with the principal and with some students who would be very interested in buying one at cost.
+
+![Fins under the case](https://raw.githubusercontent.com/opencorp2030-ctrl/cartouche-usb4/main/docs/images/model-bottom.png)
+
+---
+
 ## One error patched
 
 **Time spent: 1h18m**
