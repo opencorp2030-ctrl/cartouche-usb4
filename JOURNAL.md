@@ -1,5 +1,15 @@
 # CARTOUCHE USB4 — Development Journal
 
+## One error patched
+
+**Time spent: 1h18m**
+
+When I printed the parts, they didn't fit, so after some research I realised it simply wasn't the right components. The mock-up just didn't have a slot, and the SSD was too low. I'm going to reprint everything to test the layout and the screws.
+
+![Section of the assembly](https://raw.githubusercontent.com/opencorp2030-ctrl/cartouche-usb4/main/docs/images/model-section.png)
+
+---
+
 ## Thinking about our fellow developers
 
 **Time spent: 2h**
