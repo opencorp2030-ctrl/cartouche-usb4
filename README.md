@@ -69,12 +69,14 @@ on the website.
 |---|---|
 | Halves | base + lid, split under the board |
 | Board + closing | 2 × M3 × 12 countersunk screws, from below, through the board's Ø3.2 holes into the lid |
-| SSD | in the M.2 connector, M2 screw on a standoff of the base |
+| SSD | in the M.2 connector (ARGOSY NASM0-S6701-TPH4, 3.0 mm): card 1.90 mm under the board, edge seated 1.75 mm past the connector posts (datasheet); M2 screw on a standoff of the base |
+| Assembly order | plug the SSD into the board outside the case, press it flat, lay board + SSD into the base, M2 screw, then the lid |
 | Rear | 1 × M2 × 10 screw |
 | USB-C | receptacle flush with the front; plug model included, mated and checked |
 | Cooling | lid boss + 1 mm thermal pad on the ASM2464PD |
 | Interference check | no overlap between board, SSD, plug, base and lid |
-| Fit test | print `case_base.stl`, `case_lid.stl`, `ssd_2230.stl`, `board_mockup.stl`; values to confirm are marked `CHECK` in `eclair_v1.py` |
+| Fit test | print `case_base.stl`, `case_lid.stl`, `ssd_2230.stl`, `board_mockup.stl` (the mock-up has a 1.0 mm card slot cut in the connector); values to confirm are marked `CHECK` in `eclair_v1.py` |
+| Fit check (CadQuery) | 0 mm³ overlap between SSD, board, case base, lid and USB-C plug |
 
 ## Credit: what is mine and what is not
 

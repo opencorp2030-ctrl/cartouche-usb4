@@ -15,7 +15,9 @@ import cadquery as cq
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "out")
-BOARD_STEP = next(p for p in (os.path.join(HERE, "..", "pcb", "fab", "cartouche-usb4.step"), os.path.join(HERE, "..", "fab", "cartouche-usb4.step")) if os.path.exists(p))
+BOARD_STEP = os.path.join(HERE, "..", "fab", "cartouche-usb4.step")
+if not os.path.exists(BOARD_STEP):                  # layout of the GitHub repository
+    BOARD_STEP = os.path.join(HERE, "..", "pcb", "fab", "cartouche-usb4.step")
 os.makedirs(OUT, exist_ok=True)
 
 # ---- the board (from KiCad) -------------------------------------------------
@@ -29,11 +31,20 @@ CHIP = dict(x=151.24, y=-106.88, top=2.58, size=10.0)        # ASM2464PD, top of
 TOP_PARTS = 4.80                   # highest part above Z=0 (USB-C shell)
 
 # ---- the SSD (M.2 2230, M key) -----------------------------------------------
+# Connector CN1 = ARGOSY NASM0-S6701-TPH4 (M.2 M key, 3.0 mm high), mounted on the
+# board's BOTTOM side. Datasheet (LCSC C364435, drawing NXSM0-S67XX-XXH4):
+#   - mated card at "1.90 REF" from the board  -> card face nearest the board at Z = -1.90
+#   - "module seating plane to alignment post 1.75"; the Ø1.60 / Ø1.10 posts are the
+#     NPTH holes at Y = -115.646 (drill file)       -> card edge at Y = -117.40
+# v1.0 had the card at -3.0 (1.1 mm too low, below the slot) and 0.35 mm too deep:
+# a real SSD could not be plugged in. Fixed in v1.1.
 SSD_W, SSD_L, SSD_T = 22.0, 30.0, 0.8
-SSD_NEAR = -3.0                    # face towards the board: connector "H3.0"
-SSD_CHIPS = 1.35                   # parts on the far side
-SSD_EDGE = -117.05                 # card edge inside the connector   CHECK
-SSD_END = SSD_EDGE - SSD_L         # -147.05: screw notch centre
+CN1_POST_Y = -115.646
+SSD_NEAR = -1.90                   # card face towards the board
+SSD_CHIPS = 1.35                   # parts on the far side (single-sided 2230, S3)
+SSD_EDGE = CN1_POST_Y - 1.75       # -117.40: card edge seated in the connector
+SSD_END = SSD_EDGE - SSD_L         # -147.40: screw notch centre   CHECK with a real SSD
+CN1 = dict(x0=137.51, x1=159.51, y0=-121.35, y1=-112.80, z0=-3.29)   # connector body (STEP)
 NOTCH_R = 1.75
 
 # ---- the case ----------------------------------------------------------------
@@ -44,7 +55,7 @@ FRONT_OUT = USBC["face"]           # receptacle face flush with the case front
 FRONT_IN = FRONT_OUT - 1.0         # front wall 1.0 mm, above the board
 BACK_IN = SSD_END - 5.2            # room for the SSD screw head and the rear post
 BACK_OUT = BACK_IN - WALL
-Z_FLOOR_IN = SSD_NEAR - SSD_T - SSD_CHIPS - 0.5    # -5.65
+Z_FLOOR_IN = -5.65                 # kept from v1.0 (screw lengths); 1.6 mm under the SSD chips
 Z_BOT = Z_FLOOR_IN - FLOOR
 Z_ROOF_IN = TOP_PARTS + 0.5                        # 5.30
 Z_TOP = Z_ROOF_IN + ROOF
@@ -153,6 +164,40 @@ for name, wp in parts.items():
     cq.exporters.export(wp, os.path.join(OUT, name + ".stl"), tolerance=0.02, angularTolerance=0.1)
 
 board = cq.importers.importStep(BOARD_STEP)
+
+# ---- printable board mock-up (for the fit test) ---------------------------------
+# The connector's 3D model from KiCad is a solid block: nothing can be plugged into
+# it. The mock-up is the real board and parts, with the card slot cut into CN1 at
+# the datasheet height, 1.0 mm high for an FDM print (the real card is 0.8 mm).
+SLOT_H = 1.0
+slot = (cq.Workplane("XY").workplane(offset=SSD_NEAR - SSD_T - (SLOT_H - SSD_T) / 2)
+        .center(CX, (CN1["y0"] - 2 + SSD_EDGE + 0.3) / 2)
+        .rect(SSD_W + 0.4, SSD_EDGE + 0.3 - (CN1["y0"] - 2)).extrude(SLOT_H))
+mock_parts = []
+for v in board.solids().vals():
+    b = v.BoundingBox()
+    if abs(b.ymin - CN1["y0"]) < 0.05 and b.zmin < -3:          # CN1: cut the slot
+        v = cq.Workplane("XY").add(v).cut(slot).val()
+    mock_parts.append(v)
+mock = cq.Workplane("XY").add(cq.Compound.makeCompound(mock_parts))
+cq.exporters.export(mock, os.path.join(OUT, "board_mockup.stl"), tolerance=0.1, angularTolerance=0.5)
+cq.exporters.export(mock, os.path.join(OUT, "board_mockup.step"))
+
+# ---- fit checks ------------------------------------------------------------------
+def vol(a, b):
+    try:
+        return a.intersect(b).val().Volume()
+    except Exception:
+        return 0.0
+checks = {
+    "SSD in mock-up slot (must be 0)": vol(ssd, mock),
+    "SSD x case base": vol(ssd, base), "SSD x case lid": vol(ssd, lid),
+    "mock-up x base": vol(mock, base), "mock-up x lid": vol(mock, lid),
+    "plug x lid": vol(plug, lid), "plug x base": vol(plug, base), "base x lid": vol(base, lid),
+}
+for k, v in checks.items():
+    print(f"{k:34s} {v:8.2f} mm3")
+print(f"SSD card: Z {SSD_NEAR - SSD_T:.2f} .. {SSD_NEAR:.2f}, edge Y {SSD_EDGE:.2f}, end {SSD_END:.2f}")
 asm = (cq.Assembly(name="eclair_v1")
        .add(board, name="board")
        .add(ssd, name="ssd_2230", color=cq.Color(0.08, 0.12, 0.09))
