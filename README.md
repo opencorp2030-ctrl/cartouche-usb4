@@ -80,6 +80,28 @@ on the website.
 
 ![cooling diagram](docs/images/cooling-diagram.png)
 
+![cooling estimate, before / after](docs/images/cooling-estimate.png)
+
+The chart is an estimate from a simple thermal-resistance model (assumptions under the chart), not a measurement.
+
+## Éclair Dock (optional): under the desk
+
+| Top: Éclair slides in | Desk side: rails, screw bosses, air slots |
+|---|---|
+| ![dock top](docs/images/dock-top.png) | ![dock desk side](docs/images/dock-desk-side.png) |
+
+| Part | Detail |
+|---|---|
+| Size | 29.9 × 73.8 × 25.9 mm, CNC aluminium, polished |
+| Mounting | 2 countersunk wood screws Ø4 under the desk (reachable with Éclair out) |
+| Holding Éclair | Éclair hangs upside down on two lips (engraved lid facing the room), 0.25 mm clearance, 14 mm sticks out to grip it |
+| Cable | USB4 40 Gb/s 0.8 m cable, its plug clamped in the rear block (plate + 4 × M2 countersunk): sliding Éclair in plugs it, pulling it out unplugs it |
+| Airflow | 2 rails + 2 bosses keep the plate 5 mm off the desk; slots above the fins let warm air out along that gap (see diagram) |
+| Fit check (CadQuery) | 0 mm³ overlap between dock, clamp, case and plug |
+| Files | `cad/out/dock_body.step/.stl`, `dock_clamp.step/.stl`, `eclair_dock_assembly.step` (with the electronics) |
+
+![airflow under the desk](docs/images/airflow-diagram.png)
+
 ## Credit: what is mine and what is not
 
 For this prototype, I'd rather start from something that works, even if I have to

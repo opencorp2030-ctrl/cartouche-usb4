@@ -63,3 +63,13 @@ Per drive, bought separately:
 | Box, foam insert, printed notice | packaging supplier / print shop | ≈ 3 € |
 
 One-off tools: a Windows PC to flash the ASMedia firmware (free tool from the original project), a USB4 or Thunderbolt computer to measure the real speed.
+
+## Éclair Dock (optional, sold at cost)
+
+| Item | Batch of 10 | Source |
+|---|---|---|
+| Dock body + clamp, CNC aluminium, polished | ≈ 40 € | estimate (to quote from the STEP files) |
+| USB4 40 Gb/s cable, 0.8 m | ≈ 15 € | retail price |
+| Screws (2 wood, 4 × M2) | ≈ 0.50 € | estimate |
+| Box and fitting notice | ≈ 2 € | estimate |
+| **Unit cost / price at cost** | **≈ 57.50 € / 72 €** | computed by `tools/prix_coutant.py` |

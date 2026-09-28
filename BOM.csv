@@ -43,3 +43,8 @@ Item,Qty per unit,Reference,Value,Package,Manufacturer,Manufacturer part number,
 42,1,Case,case_base + case_lid (cad/out),"aluminium CNC anodised, or 3D print for tests",,,https://jlccnc.com,≈ EUR 15–35,maker,laser-engraved lid
 43,1,Cable,"USB-C to USB-C, USB4 40 Gb/s, 0.5 m",,UGREEN or equivalent,,https://www.amazon.fr/s?k=cable+usb4+40gbps+0.5m,≈ EUR 15,maker,full speed
 44,1,Cable,"USB-A to USB-C, 10 Gb/s, 0.5 m",,,,https://www.amazon.fr/s?k=cable+usb+a+usb+c+10gbps+0.5m,≈ EUR 10,maker,computers without USB-C
+45,1,Dock body,"Éclair Dock, CNC aluminium, polished (cad/out/dock_body.step)",,,,https://jlccnc.com,≈ EUR 35,maker (optional dock),under-desk holder
+46,1,Dock clamp,cable clamp plate (cad/out/dock_clamp.step),,,,https://jlccnc.com,≈ EUR 5,maker (optional dock),holds the USB4 plug in the dock
+47,1,Dock cable,"USB-C to USB-C, USB4 40 Gb/s, 0.8 m",,,,https://www.amazon.fr/s?k=cable+usb4+40gbps+0.8m,≈ EUR 15,maker (optional dock),stays in the dock
+48,2,Wood screws,countersunk Ø4 × 16,,,,https://www.amazon.fr/s?k=vis+bois+tete+fraisee+4x16,≈ EUR 0.20,maker (optional dock),dock under the desk
+49,4,Clamp screws,M2 × 5 countersunk,,,,https://www.amazon.fr/s?k=vis+m2+fraisee,≈ EUR 0.20,maker (optional dock),clamp plate

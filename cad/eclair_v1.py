@@ -176,8 +176,69 @@ cable = (cq.Workplane("XZ", origin=(0, USBC["face"] - ins + 6.65 + 18, 0)).cente
          .circle(2.0).extrude(-25))
 plug = shell.union(over).union(cable)
 
+# ---- Éclair Dock: under-desk holder, polished aluminium ---------------------------
+# Screwed under a desk (plate against the desk), Éclair hangs in it upside down: the
+# engraved lid faces the room, the lid's top edges ride on two lips. The USB-C cable
+# stays in the dock: its plug is clamped in the rear block, so sliding Éclair in plugs
+# it in, pulling it out unplugs it. 14 mm of Éclair stick out at the front to grip it.
+# Built in the case's frame (plate below here); turn it over to mount it.
+DC, DWALL, DPLATE, DAIR = 0.25, 2.2, 3.0, 1.5       # clearance, wall, plate, air under the fins
+DSTAND = 5.0                                        # air gap between the plate and the desk (rails + bosses)
+LIP_W, LIP_T, GRIP = 2.4, 1.8, 14.0
+FIN_BOT = Z_BOT - FIN_H
+D_IN0, D_IN1 = OX0 - DC, OX1 + DC                   # channel
+D_X0, D_X1 = D_IN0 - DWALL, D_IN1 + DWALL           # outside
+D_ZP1 = FIN_BOT - DAIR                              # plate face towards Éclair
+D_ZP0 = D_ZP1 - DPLATE                              # plate face against the desk
+D_ZL0 = Z_TOP + DC                                  # lips: underside (Éclair rests on it)
+D_ZT = D_ZL0 + LIP_T                                # top of lips and block
+D_YF = BACK_OUT + GRIP                              # open front
+D_YS = FRONT_OUT + 0.3                              # rear block face (Éclair's USB-C side)
+D_YR = -66.0                                        # rear end
+OVER = dict(x=USBC["x"], z=USBC["z"], w=12.4, h=6.5, y0=USBC["face"] - ins + 6.65, y1=USBC["face"] - ins + 6.65 + 18)
+DCL = dict(w=23.0, y0=D_YS + 0.6, y1=D_YR, t=D_ZT - (OVER["z"] + OVER["h"] / 2 + 0.2))   # clamp plate
+
+
+def box(x0, x1, y0, y1, z0, z1):
+    return cq.Workplane("XY").box(x1 - x0, y1 - y0, z1 - z0, centered=False).translate((x0, y0, z0))
+
+
+dock = box(D_X0, D_X1, D_YF, D_YR, D_ZP0, D_ZT).edges("|Y").fillet(2.0).faces("<Y or >Y").edges().fillet(0.8)
+dock = dock.cut(box(D_IN0, D_IN1, D_YF - 1, D_YS, D_ZP1, D_ZL0))                    # channel
+dock = dock.cut(box(D_IN0 + LIP_W, D_IN1 - LIP_W, D_YF - 1, D_YS, D_ZL0 - 1, D_ZT + 1))  # opening between the lips
+# rear block: pocket for the plug overmold, cable slot, recess for the clamp plate
+dock = dock.cut(box(OVER["x"] - OVER["w"] / 2 - 0.2, OVER["x"] + OVER["w"] / 2 + 0.2, D_YS - 0.1, OVER["y1"] + 0.3,
+                    OVER["z"] - OVER["h"] / 2 - 0.2, D_ZT + 1))
+dock = dock.cut(box(OVER["x"] - 2.5, OVER["x"] + 2.5, OVER["y1"], D_YR + 1, OVER["z"] - 2.5, D_ZT + 1))
+dock = dock.cut(box(CX - DCL["w"] / 2, CX + DCL["w"] / 2, DCL["y0"], D_YR + 1, D_ZT - DCL["t"], D_ZT + 1))
+CLAMP_SCREWS = [(CX + sx * 9.5, y) for sx in (-1, 1) for y in (DCL["y0"] + 2.5, D_YR - 3.0)]
+for x, y in CLAMP_SCREWS:
+    dock = dock.cut(hole(x, y, D_ZT - DCL["t"] - 5, D_ZT, 1.6))                      # M2 pilot, tapped
+# desk side: two rails along the edges and two bosses around the screws hold the plate
+# 5 mm off the desk, so the warm air from the fins (through the slots) and from the
+# plate can flow out along the desk instead of being trapped against it.
+for x0, x1 in ((D_X0 + 0.6, D_X0 + 3.6), (D_X1 - 3.6, D_X1 - 0.6)):
+    dock = dock.union(box(x0, x1, D_YF + 2, D_YR - 2, D_ZP0 - DSTAND, D_ZP0 + 0.01).edges("|Y").fillet(1.0))
+# desk screws (countersunk wood screws Ø4, head on the channel side) and air slots under the fins
+DESK_SCREWS = [(CX, -100.0), (CX, -128.0)]
+for x, y in DESK_SCREWS:
+    dock = dock.union(post(x, y, D_ZP0 - DSTAND, D_ZP0 + 0.01, 9.0))
+    dock = dock.cut(hole(x, y, D_ZP0 - DSTAND - 1, D_ZP1 + 1, 4.3))
+    dock = dock.cut(cq.Workplane("XY").workplane(offset=D_ZP1 - 2.2).center(x, y).circle(2.15)
+                    .workplane(offset=2.2).circle(4.2).loft())
+for dx in (-6.5, 6.5):
+    dock = dock.cut(cq.Workplane("XY").workplane(offset=D_ZP0 - 1).center(CX + dx, (D_YF + 4 - 96) / 2)
+                    .slot2D(-96 - (D_YF + 4), 3.0, angle=90).extrude(DPLATE + 2))
+clamp = box(CX - DCL["w"] / 2 + 0.1, CX + DCL["w"] / 2 - 0.1, DCL["y0"] + 0.1, D_YR, D_ZT - DCL["t"] + 0.1, D_ZT)
+for x, y in CLAMP_SCREWS:
+    clamp = clamp.cut(hole(x, y, D_ZT - DCL["t"], D_ZT + 1, 2.3))
+    clamp = clamp.cut(cq.Workplane("XY").workplane(offset=D_ZT - 1.1).center(x, y).circle(1.15)
+                      .workplane(offset=1.1).circle(2.2).loft())                     # M2 countersunk, flush
+clamp = clamp.edges("|Z").fillet(1.0)
+
 # ---- exports -------------------------------------------------------------------
-parts = {"case_base": base, "case_lid": lid, "ssd_2230": ssd, "usbc_plug": plug}
+parts = {"case_base": base, "case_lid": lid, "ssd_2230": ssd, "usbc_plug": plug,
+         "dock_body": dock, "dock_clamp": clamp}
 for name, wp in parts.items():
     cq.exporters.export(wp, os.path.join(OUT, name + ".step"))
     cq.exporters.export(wp, os.path.join(OUT, name + ".stl"), tolerance=0.02, angularTolerance=0.1)
@@ -213,6 +274,8 @@ checks = {
     "SSD x case base": vol(ssd, base), "SSD x case lid": vol(ssd, lid),
     "mock-up x base": vol(mock, base), "mock-up x lid": vol(mock, lid),
     "SSD pad boss top (Z)": SSD_LOW - SSD_PAD["squeeze"],
+    "dock x case base": vol(dock, base), "dock x case lid": vol(dock, lid),
+    "dock x plug": vol(dock, plug), "dock clamp x plug": vol(clamp, plug), "dock x clamp": vol(dock, clamp),
     "plug x lid": vol(plug, lid), "plug x base": vol(plug, base), "base x lid": vol(base, lid),
 }
 for k, v in checks.items():
@@ -225,6 +288,44 @@ asm = (cq.Assembly(name="eclair_v1")
        .add(lid, name="case_lid", color=cq.Color(0.42, 0.48, 0.56, 0.35))
        .add(plug, name="usbc_plug", color=cq.Color(0.12, 0.12, 0.13)))
 asm.save(os.path.join(OUT, "eclair_v1_assembly.step"))
+# Éclair in its dock (full assembly with electronics), for the dock's documentation
+dasm = (cq.Assembly(name="eclair_dock")
+        .add(board, name="board")
+        .add(ssd, name="ssd_2230", color=cq.Color(0.08, 0.12, 0.09))
+        .add(base, name="case_base", color=cq.Color(0.43, 0.48, 0.55))
+        .add(lid, name="case_lid", color=cq.Color(0.43, 0.48, 0.55))
+        .add(plug, name="usbc_plug", color=cq.Color(0.12, 0.12, 0.13))
+        .add(dock, name="dock_body", color=cq.Color(0.86, 0.87, 0.89))
+        .add(clamp, name="dock_clamp", color=cq.Color(0.80, 0.81, 0.83)))
+dasm.save(os.path.join(OUT, "eclair_dock_assembly.step"))
 asm.save(os.path.join(OUT, "eclair_v1_assembly.glb"))
+# ---- web model: the board split in 4 colour groups (the site's 3D viewer) --------
+groups = {"board_plate": [], "board_metal": [], "board_dark": [], "board_gold": []}
+for v in board.solids().vals():
+    b = v.BoundingBox()
+    if b.xlen > 20 and b.ylen > 30 and b.zlen < 2:
+        groups["board_plate"].append(v)
+    elif max(b.xlen, b.ylen) > 7.5:
+        groups["board_metal"].append(v)             # USB-C shell, M.2 connector
+    elif min(b.xlen, b.ylen, b.zlen) < 0.25:
+        groups["board_gold"].append(v)              # pads, flat metal
+    else:
+        groups["board_dark"].append(v)              # chips and passives
+colours = {"board_plate": (0.10, 0.36, 0.23), "board_metal": (0.78, 0.80, 0.82),
+           "board_dark": (0.16, 0.17, 0.19), "board_gold": (0.80, 0.64, 0.29)}
+web = cq.Assembly(name="eclair_v1_web")
+for k, vs in groups.items():
+    if vs:
+        web.add(cq.Workplane("XY").add(cq.Compound.makeCompound(vs)), name=k, color=cq.Color(*colours[k]))
+web.add(ssd, name="ssd_2230", color=cq.Color(0.08, 0.12, 0.09))
+web.add(base, name="case_base", color=cq.Color(0.43, 0.48, 0.55))
+web.add(lid, name="case_lid", color=cq.Color(0.43, 0.48, 0.55))
+web.add(plug, name="usbc_plug", color=cq.Color(0.10, 0.10, 0.11))
+web.add(dock, name="dock_body", color=cq.Color(0.86, 0.87, 0.89))
+web.add(clamp, name="dock_clamp", color=cq.Color(0.80, 0.81, 0.83))
+web.save(os.path.join(OUT, "eclair_v1_web.glb"))
+
 bb = base.union(lid).val().BoundingBox()
 print(f"case: {bb.xlen:.1f} x {bb.ylen:.1f} x {bb.zlen:.1f} mm")
+db = dock.val().BoundingBox()
+print(f"dock: {db.xlen:.1f} x {db.ylen:.1f} x {db.zlen:.1f} mm, Éclair sticks out {GRIP:.0f} mm")
